@@ -1,0 +1,14 @@
+generated: '2026-09-27'
+method: generated
+generator: finish-artifacts.py (index from skill frontmatter)
+source: skills/*.md frontmatter; every operationId checked against openapi/
+skills:
+- file: skills/backbase-payment-orders.md
+  name: payment-orders
+  api: openapi/payment-order-client-api-v2.0.0.yaml
+  operations:
+  - getPaymentOrders
+  - postPaymentOrders
+  - getPaymentOrderById
+  - putPaymentOrderById
+  - deletePaymentOrderById

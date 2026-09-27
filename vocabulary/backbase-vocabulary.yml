@@ -1,0 +1,423 @@
+generated: '2026-09-27'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/payment-order-client-api-v2.0.0.yaml
+vocabulary:
+  name: BackBase Domain Vocabulary
+  description: 'Terms declared by BackBase''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-09-27'
+  terms:
+  - term: approve
+    definition: Payment approval API.
+    tags:
+    - Resource Group
+    source: openapi/payment-order-client-api-v2.0.0.yaml
+  - term: payment-orders
+    definition: Core payments API.
+    tags:
+    - Resource Group
+    source: openapi/payment-order-client-api-v2.0.0.yaml
+  - term: utility
+    definition: Utility endpoints.
+    tags:
+    - Resource Group
+    source: openapi/payment-order-client-api-v2.0.0.yaml
+  - term: validate
+    definition: Validation of a payment.
+    tags:
+    - Resource Group
+    source: openapi/payment-order-client-api-v2.0.0.yaml
+  - term: PaymentOrdersGet
+    definition: List of Payment Orders
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersGet
+  - term: InitiatePaymentOrder
+    definition: 'Object declared by the contract with fields: originatorAccount, batchBooking, instructionPriority, requestedExecutionDate, paymentMode,
+      paymentType, schedule, entryClass, transferTransactionInformation, approved.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersPost
+  - term: PaymentOrdersPostResponse
+    definition: 'Object declared by the contract with fields: id, status, bankStatus, reasonCode, reasonText, errorDescription, nextExecutionDate,
+      paymentSetupId, paymentSubmissionId, approvalStatus, transferFee, exchangeRateInformation. (1 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersPostResponse
+  - term: InitiatePaymentOrder
+    definition: 'Object declared by the contract with fields: originatorAccount, batchBooking, instructionPriority, requestedExecutionDate, paymentMode,
+      paymentType, schedule, entryClass, transferTransactionInformation, approved.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersValidatePost
+  - term: PaymentOrdersValidatePostResponse
+    definition: 'Object declared by the contract with fields: originatorAccount, batchBooking, instructionPriority, requestedExecutionDate, paymentMode,
+      paymentType, entryClass, schedule, transferTransactionInformation, paymentSetupId, paymentSubmissionId, originator. (5 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersValidatePostResponse
+  - term: BulkPaymentOrdersApprovalPutRequest
+    definition: 'Object declared by the contract with fields: approvalStatus, paymentOrderIds, comment.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BulkPaymentOrdersApprovalPutRequest
+  - term: BulkPaymentOrdersApprovalPutResponse
+    definition: 'Object declared by the contract with fields: approvalStatus, comment, paymentOrders, successCount, failCount.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BulkPaymentOrdersApprovalPutResponse
+  - term: PaymentOrderGet
+    definition: 'Object declared by the contract with fields: approvalDetails, id, approvalId, status, bankStatus, reasonCode, reasonText, errorDescription,
+      createdBy, createdAt, updatedBy, updatedAt. (20 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrderGetResponse
+  - term: ApprovalStatusPutRequest
+    definition: 'Object declared by the contract with fields: approvalStatus, comment.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrderApprovalPutRequest
+  - term: CancelRequest
+    definition: 'Object declared by the contract with fields: version.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrderCancelPostRequest
+  - term: CancelResponse
+    definition: 'Object declared by the contract with fields: accepted.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrderCancelPostResponse
+  - term: CurrenciesGet
+    definition: Currencies available for payment response
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/CurrenciesGet
+  - term: RateGet
+    definition: 'Object declared by the contract with fields: rate.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/RateGet
+  - term: BadRequestError
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BadRequestError
+  - term: UnauthorizedError
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/UnauthorizedError
+  - term: InternalServerError
+    definition: Represents HTTP 500 Internal Server Error
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/internal-server-error
+  - term: ForbiddenError
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/forbidden-error
+  - term: BreachReportError
+    definition: 'Object declared by the contract with fields: message, payment, checkTime, breachReport.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BreachReportError
+  - term: IdentifiedPaymentOrder
+    definition: 'Object declared by the contract with fields: id, approvalId, status, bankStatus, reasonCode, reasonText, errorDescription, createdBy,
+      createdAt, updatedBy, updatedAt, actions. (19 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/IdentifiedPaymentOrder
+  - term: Actions
+    definition: An array of actions that could be performed on a payment order. Actions that can be done are dependant on the payment itself.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Actions
+  - term: ContextualInformation
+    definition: 'Object declared by the contract with fields: externalUserId, internalUserId, serviceAgreementId, legalEntityId, origin.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ContextualInformation
+  - term: ExternalUserId
+    definition: The (unique and human readable) external user id of the user.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ExternalUserId
+  - term: InvolvedParty
+    definition: This object is a common denominator for the debtor or creditor party.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/InvolvedParty
+  - term: BatchBooking
+    definition: Indicate whenever there should be only one debit posting for the whole set of instructions
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BatchBooking
+  - term: PaymentMode
+    definition: Denotes whether payment will be single or will be recurring
+    tags:
+    - Enumeration
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentMode
+  - term: Schedule
+    definition: Schedule for recurring transfer. Mandatory if paymentMode is RECURRING
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Schedule
+  - term: IdentifiedTransaction
+    definition: The object defining the identified transaction, which means the counterparty will have a arrangementId where applicable.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/IdentifiedTransaction
+  - term: CounterpartyAccount
+    definition: The counterparty Account is the original account identification plus the arrangement if applicable.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/CounterpartyAccount
+  - term: Name
+    definition: Default name field used in DBS
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Name
+  - term: Bank
+    definition: This object is used to identify the counterparty or correspondent bank.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Bank
+  - term: Currency
+    definition: 'Object declared by the contract with fields: amount, currencyCode, additions.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/currency
+  - term: MandateIdentifier
+    definition: The mandate identifier, of the counter party, giving permission for the debit order.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/MandateIdentifier
+  - term: BreachReportItem
+    definition: 'Object declared by the contract with fields: limitedEntity, shadow, currency, user-BBID, breachInfo.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BreachReportItem
+  - term: EntityDescription
+    definition: 'Object declared by the contract with fields: ref, type, description.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/EntityDescription
+  - term: BreachInfo
+    definition: 'Object declared by the contract with fields: breachType, breachedLimitType, timeframe, currentConsumption, currentThreshold.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BreachInfo
+  - term: TimeFrame
+    definition: 'Object declared by the contract with fields: period, startTime, endTime.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/TimeFrame
+  - term: Amount
+    definition: The amount in the specified currency
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Amount
+  - term: BadRequestError
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/bad-request-error
+  - term: NotFoundError
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/not-found-error
+  - term: UnauthorizedError
+    definition: 'Object declared by the contract with fields: message, errors.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/unauthorized-error
+  - term: PaymentOrdersGet
+    definition: List of Payment Orders
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/payment-orders-get
+  - term: InitiatePaymentOrder
+    definition: 'Object declared by the contract with fields: originatorAccount, batchBooking, instructionPriority, requestedExecutionDate, paymentMode,
+      paymentType, schedule, entryClass, transferTransactionInformation, approved.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/InitiatePaymentOrder
+  - term: InitiateTransaction
+    definition: The object defining the transaction to be initiated.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/InitiateTransaction
+  - term: InitiateCounterpartyAccount
+    definition: The counterparty Account is the original account identification plus the type of account if applicable. It also holds the details
+      of the selected contact, if any.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/InitiateCounterpartyAccount
+  - term: SelectedContactDto
+    definition: Holds the contact and account id when an account from a contact was selected while creating a payment. This information is not
+      persisted in DBS but can be used in service extensions to enrich details from the selected contact and store it in the additional properties
+      of the payment order.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/SelectedContactDto
+  - term: PaymentOrdersPostResponse
+    definition: 'Object declared by the contract with fields: id, status, bankStatus, reasonCode, reasonText, errorDescription, nextExecutionDate,
+      paymentSetupId, paymentSubmissionId, approvalStatus, transferFee, exchangeRateInformation. (1 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/payment-orders-post-response
+  - term: PaymentOrdersValidatePostResponse
+    definition: 'Object declared by the contract with fields: originatorAccount, batchBooking, instructionPriority, requestedExecutionDate, paymentMode,
+      paymentType, entryClass, schedule, transferTransactionInformation, paymentSetupId, paymentSubmissionId, originator. (5 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/validate-payment-order-response
+  - term: BulkPaymentOrdersApprovalPutRequest
+    definition: 'Object declared by the contract with fields: approvalStatus, paymentOrderIds, comment.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/bulk-payment-orders-approval-put-request
+  - term: BulkPaymentOrdersApprovalPutResponse
+    definition: 'Object declared by the contract with fields: approvalStatus, comment, paymentOrders, successCount, failCount.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/bulk-payment-orders-approval-put-response
+  - term: PaymentOrderGet
+    definition: 'Object declared by the contract with fields: approvalDetails, id, approvalId, status, bankStatus, reasonCode, reasonText, errorDescription,
+      createdBy, createdAt, updatedBy, updatedAt. (20 more)'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/payment-order-get-response
+  - term: ApprovalStatusPutRequest
+    definition: 'Object declared by the contract with fields: approvalStatus, comment.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/payment-order-approval-request
+  - term: CancelRequest
+    definition: 'Object declared by the contract with fields: version.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/payment-order-cancel-request
+  - term: CancelResponse
+    definition: 'Object declared by the contract with fields: accepted.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/payment-order-cancel-response
+  - term: CurrenciesGet
+    definition: Currencies available for payment response
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/currencies-get-response
+  - term: RateGet
+    definition: 'Object declared by the contract with fields: rate.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/rate-get-response
+  - term: ErrorItem
+    definition: 'Object declared by the contract with fields: message, key, context.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/error-item
+  - term: PaymentId
+    definition: Unique identification of the payment order.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentId
+  - term: ApprovalId
+    definition: The id of the approval request that is or was used to get this item approved.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ApprovalId
+  - term: Status
+    definition: The internal DBS status of the payment order..
+    tags:
+    - Enumeration
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Status
+  - term: BankStatus
+    definition: Internal status of the payment or batch order in the core banking system.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/BankStatus
+  - term: ReasonCode
+    definition: Reason code the core banking system accepted/rejected the payment or batch.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ReasonCode
+  - term: ReasonText
+    definition: Human readable reason the core banking system accepted/rejected the payment or batch.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ReasonText
+  - term: ErrorDescription
+    definition: Additional information from the core banking system on why the payment was refused.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ErrorDescription
+  - term: ConfirmationId
+    definition: The confirmation id for transaction signing.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ConfirmationId
+  - term: PaymentSetupId
+    definition: Generated when the PISP sets up the payments before the Backbase authorization flow.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentSetupId
+  - term: PaymentSubmissionId
+    definition: Generated when the PISP submits the payment which is after the Backbase authorization flow.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentSubmissionId
+  - term: OriginatorAccount
+    definition: The product identification of the originator
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/OriginatorAccount
+  - term: ArrangementId
+    definition: The unique arrangement id.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ArrangementId
+  - term: ExternalArrangementId
+    definition: The external unique arrangement id.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/ExternalArrangementId
+  - term: Identification
+    definition: 'Object declared by the contract with fields: identification, schemeName.'
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Identification
+  - term: SchemeNames
+    definition: This describes the type of the account identifier. ID will mean it refers to an account known within DBS.
+    tags:
+    - Enumeration
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/SchemeNames
+  - term: InstructionPriority
+    definition: Specify the priority of execution of the payment order.
+    tags:
+    - Enumeration
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/InstructionPriority
+  - term: RequestedExecutionDate
+    definition: The preferred date for the payment order to be executed.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/RequestedExecutionDate
+  - term: PaymentType
+    definition: The type of payment.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentType
+  - term: EntryClass
+    definition: Used for ACH Standard Entry Class (SEC) Code to designate how the transaction was authorized by the originator.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/EntryClass
+  - term: Id
+    definition: General purpose identifier. Can be UUID but does not have to.
+    tags:
+    - Object
+    source: openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/Id

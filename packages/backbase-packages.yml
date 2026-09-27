@@ -1,0 +1,78 @@
+generated: '2026-09-27'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io) ; github.com/Backbase
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (backbase.com,
+  security/backbase-domain-security.yml, security/backbase-vulnerability-disclosure.yml) or its accepted GitHub org (Backbase).'
+packages:
+- name: backbase
+  registry: npm
+  url: https://www.npmjs.com/package/backbase
+  language: JavaScript
+  official: true
+  version: 0.2.7
+  published: '2015-05-03'
+  evidence: metadata names backbase.com
+- name: backbase-client-bom-example
+  registry: github
+  url: https://github.com/Backbase/backbase-client-bom-example
+  language: ''
+  official: true
+  version: null
+  published: '2026-09-25'
+  source_repo: https://github.com/Backbase/backbase-client-bom-example
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain
+- name: backbase-openapi-tools
+  registry: github
+  url: https://github.com/Backbase/backbase-openapi-tools
+  language: Mustache
+  official: true
+  version: null
+  published: '2026-09-25'
+  source_repo: https://github.com/Backbase/backbase-openapi-tools
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain
+- name: bb-tpp-api-simulator
+  registry: github
+  url: https://github.com/Backbase/bb-tpp-api-simulator
+  language: JavaScript
+  official: true
+  version: null
+  published: '2026-06-09'
+  source_repo: https://github.com/Backbase/bb-tpp-api-simulator
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain
+- name: openapi-with-quarkus
+  registry: github
+  url: https://github.com/Backbase/openapi-with-quarkus
+  language: HTML
+  official: true
+  version: null
+  published: '2025-08-13'
+  source_repo: https://github.com/Backbase/openapi-with-quarkus
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain
+- name: mx-api-client
+  registry: github
+  url: https://github.com/Backbase/mx-api-client
+  language: Java
+  official: true
+  version: null
+  published: '2025-07-12'
+  source_repo: https://github.com/Backbase/mx-api-client
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain
+- name: synergy-api-client
+  registry: github
+  url: https://github.com/Backbase/synergy-api-client
+  language: Java
+  official: true
+  version: null
+  published: '2025-07-12'
+  source_repo: https://github.com/Backbase/synergy-api-client
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain
+- name: symitar-core-banking-client
+  registry: github
+  url: https://github.com/Backbase/symitar-core-banking-client
+  language: Java
+  official: true
+  version: null
+  published: '2025-07-12'
+  source_repo: https://github.com/Backbase/symitar-core-banking-client
+  evidence: repository in github.com/Backbase, whose profile names the provider's domain

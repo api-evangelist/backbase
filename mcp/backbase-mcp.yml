@@ -1,0 +1,75 @@
+generated: '2026-09-27'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/payment-order-client-api-v2.0.0.yaml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: 'No MCP server was found. The pre-flight posted tools/list to /mcp on api.backbase.com, www.backbase.com, academy.backbase.com, community.backbase.com;
+  verdict opaque (https://api.backbase.com/mcp answered 403: the edge authenticates before it routes, which proves nothing either way). Candidate
+  tools below are derived from the 12 operation(s) in the provider''s own OpenAPI (12 listed); they describe what a server WOULD expose, not one
+  that exists.'
+tools:
+- name: get_payment_orders
+  operationId: getPaymentOrders
+  method: GET
+  path: /client-api/v2/payment-orders
+  description: Retrieve list of payments orders.
+- name: post_payment_orders
+  operationId: postPaymentOrders
+  method: POST
+  path: /client-api/v2/payment-orders
+  description: Start a new Payment Order initiation process.
+- name: post_validate
+  operationId: postValidate
+  method: POST
+  path: /client-api/v2/payment-orders/validate
+  description: Validate a payment order.
+- name: put_bulk_approvals
+  operationId: putBulkApprovals
+  method: PUT
+  path: /client-api/v2/payment-orders/bulk-approvals
+  description: Approve or reject a set of given payment orders at once.
+- name: get_approvable_payment_orders
+  operationId: getApprovablePaymentOrders
+  method: GET
+  path: /client-api/v2/payment-orders/approvals
+  description: Retrieve payment orders that can be approved or rejected by the user.
+- name: get_payment_order_by_id
+  operationId: getPaymentOrderById
+  method: GET
+  path: /client-api/v2/payment-orders/{paymentOrderId}
+  description: Retrieve the single payment order
+- name: put_payment_order_by_id
+  operationId: putPaymentOrderById
+  method: PUT
+  path: /client-api/v2/payment-orders/{paymentOrderId}
+  description: Updates a single payment order.
+- name: delete_payment_order_by_id
+  operationId: deletePaymentOrderById
+  method: DELETE
+  path: /client-api/v2/payment-orders/{paymentOrderId}
+  description: Deletes a payment order if:.
+- name: put_approvals_by_payment_order_id
+  operationId: putApprovalsByPaymentOrderId
+  method: PUT
+  path: /client-api/v2/payment-orders/{paymentOrderId}/approvals
+  description: Approves or rejects a given payment order
+- name: post_cancel_by_payment_order_id
+  operationId: postCancelByPaymentOrderId
+  method: POST
+  path: /client-api/v2/payment-orders/{paymentOrderId}/cancel
+  description: Cancel a single payment order.
+- name: get_currencies
+  operationId: getCurrencies
+  method: GET
+  path: /client-api/v2/payment-orders/currencies
+  description: Get currencies available for payment
+- name: get_rate
+  operationId: getRate
+  method: GET
+  path: /client-api/v2/payment-orders/rate
+  description: Get available rate for currencies

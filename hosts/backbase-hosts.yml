@@ -1,0 +1,105 @@
+generated: '2026-09-27'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 7
+  own: 6
+  other_domain: 0
+  platform: 1
+  roles:
+  - api
+  - community
+  - other
+  - source
+  - support
+  - website
+hosts:
+- host: academy.backbase.com
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: backbase.com
+  role: other
+  relation: own
+- host: api.backbase.com
+  found_by:
+  - apis[]
+  - contract-discovery
+  types: []
+  serves:
+  - api
+  registrable_domain: backbase.com
+  role: api
+  relation: own
+- host: community.backbase.com
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: backbase.com
+  role: community
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - GitHubOrganization
+  serves:
+  - docs
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: go.backbase.com
+  found_by:
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: backbase.com
+  role: other
+  relation: own
+- host: support.backbase.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: backbase.com
+  role: support
+  relation: own
+- host: www.backbase.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Security
+  - PrivacyPolicy
+  - Newsroom
+  - Documentation
+  - Blog
+  - GettingStarted
+  - Website
+  serves:
+  - docs
+  - cdn
+  vendor: cloudflare
+  registrable_domain: backbase.com
+  role: website
+  relation: own

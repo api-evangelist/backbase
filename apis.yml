@@ -1,23 +1,353 @@
 aid: backbase
 name: BackBase
-description: 'BackBase is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+image: https://cdn.prod.website-files.com/688b633d00cf5931b997219b/69e897c9dfa32eb11c5bb807_Open%20Graph.jpg
+description: BackBase provides an AI-native Banking Operating System that enables banks to deliver digital experiences, integrate open banking,
+  and accelerate product innovation. The platform offers modular components for customer engagement, core banking, risk management, and marketplace
+  extensions, helping financial institutions modernize their services and improve operational efficiency.
 url: https://raw.githubusercontent.com/api-evangelist/backbase/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-09-27 (modular-v1; was harvest)
 specificationVersion: '0.20'
 created: '2026-09-27'
 modified: '2026-09-27'
 tags:
-- Company
-apis: []
+- Banking
+- FinTech
+- Digital Banking
+- API Platform
+- AI-native
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/backbase-agentic-access.yml
+- type: Spectral
+  url: rules/backbase-rules.yml
+- type: JSONLD
+  url: json-ld/backbase-context.jsonld
+- type: Vocabulary
+  url: vocabulary/backbase-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/backbase-data-model.yml
+- type: ErrorCatalog
+  url: errors/backbase-problem-types.yml
+- type: Conformance
+  url: conformance/backbase-conformance.yml
+- type: Overlay
+  url: overlays/backbase-payment-order-client-api-overlay.yaml
+- type: LLMsTxt
+  url: llms/backbase-llms.txt
+- type: Hosts
+  url: hosts/backbase-hosts.yml
+- type: Vendors
+  url: vendors/backbase-vendors.yml
+- type: SDKs
+  url: packages/backbase-packages.yml
+- type: Packages
+  url: packages/backbase-packages.yml
+- type: Security
+  url: https://www.backbase.com/about/security
+- type: PrivacyPolicy
+  url: https://www.backbase.com/legal/privacy-policy
+- type: Newsroom
+  url: https://www.backbase.com/press
+- type: Documentation
+  url: https://www.backbase.com/insight/guides
+- type: Blog
+  url: https://www.backbase.com/blog
+- type: GettingStarted
+  url: https://www.backbase.com/blog/agentic-onboarding-commercial-banking
+- type: GitHubOrganization
+  url: https://github.com/Backbase
+- type: VulnerabilityDisclosure
+  url: security/backbase-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/backbase-domain-security.yml
 - type: Website
-  url: https://forgeglobal.com/backbase_stock/
+  url: https://www.backbase.com
+apis:
+- aid: backbase:backbase-approve-api
+  name: BackBase Approve API
+  description: Payment approval API.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - approve
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-approve-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-bbt-api
+  name: BackBase Bbt API
+  description: The bbt API from BackBase — 1 operation(s) for bbt.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - bbt
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-bbt-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-patch-api
+  name: BackBase Patch API
+  description: The patch API from BackBase — 1 operation(s) for patch.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - patch
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-patch-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-payment-orders-api
+  name: BackBase Payment Orders API
+  description: Core payments API.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - payment-orders
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-payment-orders-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-test-api
+  name: BackBase Test API
+  description: The test API from BackBase — 4 operation(s) for test.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - test
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-test-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-utility-api
+  name: BackBase Utility API
+  description: Utility endpoints.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - utility
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-utility-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-validate-api
+  name: BackBase Validate API
+  description: Validation of a payment.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - validate
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-validate-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+- aid: backbase:backbase-wallet-api
+  name: BackBase Wallet API
+  description: The wallet API from BackBase — 2 operation(s) for wallet.
+  humanURL: https://www.backbase.com/insight/guides
+  baseURL: https://api.backbase.com
+  tags:
+  - wallet
+  properties:
+  - type: OpenAPI
+    url: openapi/backbase-wallet-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/backbase-payment-order-get-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bulk-payment-orders-approval-put-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-response-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-orders-validate-post-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-card-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-date-query-param-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-headers-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-test-values-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-bbt-build-info-get-get-response-body-schema.json
+  - type: JSONSchema
+    url: json-schema/backbase-payment-cards-post-response-body-schema.json
+x-enrichment:
+  date: '2026-09-27'
+  status: enriched
+  artifacts_added: 34
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

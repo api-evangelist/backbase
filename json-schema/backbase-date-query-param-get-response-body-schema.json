@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backbase/main/json-schema/backbase-date-query-param-get-response-body-schema.json",
+  "title": "DateQueryParamGetResponseBody",
+  "x-generated": "2026-09-27",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/_original/backbase-openapi-openapi.yml#/components/schemas/DateQueryParamGetResponseBody",
+  "type": "object",
+  "properties": {
+    "dateTimeOnly": {
+      "type": "string"
+    },
+    "dateTimeOnlyParsedValue": {
+      "type": "string"
+    },
+    "dateTime": {
+      "type": "string"
+    },
+    "dateTimeParsedValue": {
+      "type": "string"
+    },
+    "dateTime2616": {
+      "type": "string"
+    },
+    "dateTime2616ParsedValue": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "dateParsedValue": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    },
+    "timeParsedValue": {
+      "type": "string"
+    },
+    "formatDateTime": {
+      "type": "string",
+      "description": "The dateTime parameter formatted as 'date-time', java.util.Date or java.time.ZoneDateTime",
+      "format": "date-time"
+    },
+    "formatDate": {
+      "type": "string",
+      "description": "The date parameter formatted as 'date', String or java.time.LocalDate",
+      "format": "date"
+    },
+    "formatTime": {
+      "type": "string",
+      "description": "The time parameter formatted as 'time', String or java.time.LocalTime"
+    },
+    "formatUtcMillisec": {
+      "type": "string",
+      "description": "The dateTime parameter formatted as 'date', long"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+generated: '2026-09-27'
+method: probed
+generator: harvest-sibling-contracts.py
+source: https://raw.githubusercontent.com/Backbase/backbase-openapi-tools/main/boat-trail-resources/src/main/resources/openapi/presentation-client-api/openapi.yaml
+found_on: https://github.com/Backbase/backbase-openapi-tools
+operations: gh:openapi.yaml
+version: 3.0.1
+ownership: sibling of a contract the pass accepted on the same host; URL names the
+  provider

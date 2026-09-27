@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backbase/main/json-schema/backbase-payment-orders-post-response-schema.json",
+  "title": "PaymentOrdersPostResponse",
+  "x-generated": "2026-09-27",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersPostResponse",
+  "required": [
+    "id",
+    "status"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "description": "The internal DBS status of the payment order..",
+      "enum": [
+        "DRAFT",
+        "ENTERED",
+        "READY",
+        "ACCEPTED",
+        "PROCESSED",
+        "REJECTED",
+        "CANCELLED",
+        "CANCELLATION_PENDING",
+        "CONFIRMATION_PENDING",
+        "CONFIRMATION_DECLINED"
+      ]
+    },
+    "bankStatus": {
+      "maxLength": 35,
+      "type": "string",
+      "description": "Internal status of the payment or batch order in the core banking system."
+    },
+    "reasonCode": {
+      "maxLength": 4,
+      "type": "string",
+      "description": "Reason code the core banking system accepted/rejected the payment or batch."
+    },
+    "reasonText": {
+      "maxLength": 35,
+      "type": "string",
+      "description": "Human readable reason the core banking system accepted/rejected the payment or batch."
+    },
+    "errorDescription": {
+      "maxLength": 105,
+      "type": "string",
+      "description": "Additional information from the core banking system on why the payment was refused."
+    },
+    "nextExecutionDate": {
+      "type": "string",
+      "description": "The execution date of the payment that the core system calculated.",
+      "format": "date"
+    },
+    "paymentSetupId": {
+      "maxLength": 128,
+      "type": "string",
+      "description": "Generated when the PISP sets up the payments before the Backbase authorization flow."
+    },
+    "paymentSubmissionId": {
+      "maxLength": 128,
+      "type": "string",
+      "description": "Generated when the PISP submits the payment which is after the Backbase authorization flow."
+    },
+    "approvalStatus": {
+      "maxLength": 70,
+      "type": "string",
+      "description": "The status as returned by the approval service."
+    },
+    "transferFee": {
+      "$ref": "#/$defs/Currency"
+    },
+    "exchangeRateInformation": {
+      "$ref": "#/$defs/ExchangeRateInformation"
+    },
+    "additions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "Currency": {
+      "$ref": "#/$defs/currency"
+    },
+    "ExchangeRateInformation": {
+      "type": "object",
+      "properties": {
+        "currencyCode": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string",
+          "description": "Currency in which the rate of exchange is expressed in a currency exchange."
+        },
+        "rate": {
+          "maximum": 1e+18,
+          "minimum": -1e+18,
+          "type": "string",
+          "description": "The factor used for conversion of an amount from one currency to another."
+        },
+        "rateType": {
+          "type": "string",
+          "description": "Specifies the type used to complete the currency exchange.",
+          "enum": [
+            "ACTUAL",
+            "INDICATIVE",
+            "AGREED"
+          ]
+        },
+        "contractIdentification": {
+          "maxLength": 256,
+          "type": "string",
+          "description": "Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent."
+        }
+      },
+      "description": "The detailed information on the exchange rate that has been used in the payment transaction."
+    },
+    "currency": {
+      "title": "Currency",
+      "required": [
+        "amount",
+        "currencyCode"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "maximum": 1e+18,
+          "minimum": -1e+18,
+          "type": "string",
+          "description": "The amount in the specified currency"
+        },
+        "currencyCode": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string",
+          "description": "The alpha-3 code (complying with ISO 4217) of the currency that qualifies the amount"
+        },
+        "additions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional properties"
+        }
+      }
+    }
+  }
+}

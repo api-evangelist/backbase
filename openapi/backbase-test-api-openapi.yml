@@ -1,0 +1,388 @@
+openapi: 3.2.0
+info:
+  title: Wallet Client Test API
+  description: No description available
+  version: v1
+servers:
+- url: /serviceName/client-api/v1
+  description: The server
+tags:
+- name: Test
+paths:
+  /test/required-boolean-query-param:
+    summary: required boolean query param
+    description: arbitrary tests
+    get:
+      tags:
+      - Test
+      description: No description available
+      operationId: getRequiredbooleanqueryparam
+      parameters:
+      - name: bool
+        in: query
+        description: Required boolean parameter with no default value
+        required: true
+        schema:
+          type: boolean
+        examples:
+          example:
+            summary: example
+            value: false
+      responses:
+        '200':
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequiredbooleanqueryparamGetResponseBody'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Bad Request\",\n  \"errors\" : [ {\n    \"message\" : \"Value Exceeded. Must be between {min} and {max}.\",\n    \"key\" : \"common.api.shoesize\",\n    \"context\" : {\n      \"max\" : \"50\",\n      \"min\" : \"1\"\n    }\n  } ]\n}"
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Description of error\"\n}"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Access to requested resource denied.\",\n  \"errors\" : [ {\n    \"message\" : \"Resource access denied due to an insufficient user quota of {quota}.\",\n    \"key\" : \"common.api.quota\",\n    \"context\" : {\n      \"quota\" : \"someQuota\"\n    }\n  } ]\n}"
+        '415':
+          description: UnsupportedMediaType
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Unsupported media type.\",\n  \"errors\" : [ {\n    \"message\" : \"The request entity has a media type {mediaType} which the resource does not support.\",\n    \"key\" : \"common.api.mediaType\",\n    \"context\" : {\n      \"mediaType\" : \"application/javascript\"\n    }\n  } ]\n}"
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Resource not found.\",\n  \"errors\" : [ {\n    \"message\" : \"Unable to find the resource requested resource: {resource}.\",\n    \"key\" : \"common.api.resource\",\n    \"context\" : {\n      \"resource\" : \"aResource\"\n    }\n  } ]\n}"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedAltError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Access to requested resource denied.\",\n  \"errors\" : [ {\n    \"message\" : \"Resource access denied due to invalid credentials.\",\n    \"key\" : \"common.api.token\",\n    \"context\" : {\n      \"accessToken\" : \"expired\"\n    }\n  } ]\n}"
+      summary: Get requiredbooleanqueryparam
+      x-summary-source: derived
+  /test/values:
+    summary: Test Values
+    description: Test Values
+    get:
+      tags:
+      - Test
+      description: No description available
+      operationId: getValues
+      responses:
+        '200':
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestValuesGetResponseBody'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1\",\n  \"number\" : \"102.4\"\n}"
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Description of error\"\n}"
+      summary: Get values
+      x-summary-source: derived
+  /test/headers:
+    summary: Test header propagation
+    description: Test header propagation
+    get:
+      tags:
+      - Test
+      description: No description available
+      operationId: getHeaders
+      parameters:
+      - name: addHops
+        in: query
+        description: number of additional hops to perform
+        required: false
+        schema:
+          type: integer
+          format: int32
+        examples:
+          example:
+            summary: example
+      responses:
+        '200':
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TestHeadersResponseBody'
+              examples:
+                example:
+                  value: "{\n  \"requests\" : [ {\n    \"name\" : \"building-blocks-test-wallet-presentation-service\",\n    \"url\" : \"/client-api/v1/test/headers\",\n    \"headers\" : {\n      \"correlation-id\" : [ \"2ed475b714a3945a\" ],\n      \"accept\" : [ \"application/json\" ],\n      \"x-bbt-test\" : [ \"X-BBT-contentVal2\" ],\n      \"connection\" : [ \"keep-alive\" ]\n    }\n  }, {\n    \"name\" : \"building-blocks-test-wallet-pandp-service\",\n    \"url\" : \"/service-api/v1/test/headers\",\n    \"headers\" : {\n      \"authorization\" : [ \"Bearer eyJh\" ],\n      \"accept\" : [ \"application/xml, text/xml, application/json, application/*+xml, application/*+json\" ],\n      \"content-type\" : [ \"application/json\" ],\n      \"x-cxt-user-token\" : [ \"Bearer ey\" ],\n      \"x-cxt-remote-user\" : [ \"admin\" ],\n      \"x-cxt-requestuuid\" : [ \"72002652-131a-4f28-bd00-16b8080932f5\" ],\n      \"correlation-id\" : [ \"2ed475b714a3945a\" ],\n      \"x-bbt-test\" : [ \"X-BBT-contentVal2\" ]\n    }\n  }, {\n    \"name\" : \"building-blocks-test-wallet-pandp-service\",\n    \"url\" : \"/service-api/v1/test/headers\",\n    \"headers\" : {\n      \"authorization\" : [ \"Bearer eyJh\" ],\n      \"accept\" : [ \"application/xml, text/xml, application/json, application/*+xml, application/*+json\" ],\n      \"content-type\" : [ \"application/json\" ],\n      \"x-cxt-user-token\" : [ \"Bearer ey\" ],\n      \"x-cxt-remote-user\" : [ \"admin\" ],\n      \"x-cxt-requestuuid\" : [ \"72002652-131a-4f28-bd00-16b8080932f5\" ],\n      \"correlation-id\" : [ \"2ed475b714a3945a\" ],\n      \"x-bbt-test\" : [ \"X-BBT-contentVal2\" ]\n    }\n  } ]\n}"
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Description of error\"\n}"
+      summary: Get headers
+      x-summary-source: derived
+  /test/date-query-params:
+    summary: dateQueryParam
+    description: 'Tests for date/time query parameters in service-apis.  Sends the same query parameters to the equivalent endpoint
+
+      in the pandp service which echoes the given values back in the response body.  Values echoed by the pandp service
+
+      are then returned in the response to this request.
+
+      '
+    get:
+      tags:
+      - Test
+      description: No description available
+      operationId: getDatequeryparams
+      parameters:
+      - name: dateTimeOnly
+        in: query
+        description: Creation date in datetime-only format
+        required: false
+        schema:
+          type: string
+          format: date-time
+        examples:
+          example:
+            summary: example
+            value: 2017-10-04 14:54:36
+      - name: dateTime
+        in: query
+        description: Creation date in Zoned RFC3339 Date-time format
+        required: false
+        schema:
+          type: string
+          format: date-time
+        examples:
+          example:
+            summary: example
+            value: 2017-10-04 14:54:36+00:00
+      - name: dateTime2616
+        in: query
+        description: Zoned RFC2616 Date-time param example
+        required: false
+        schema:
+          type: string
+          format: date-time
+        examples:
+          example:
+            summary: example
+            value: Wed, 4 Jul 2001 12:08:56 PDT
+      - name: date
+        in: query
+        description: Date-only param example
+        required: false
+        schema:
+          type: string
+          format: date
+        examples:
+          example:
+            summary: example
+            value: 2017-10-04
+      - name: time
+        in: query
+        description: time-only param example
+        required: false
+        schema:
+          type: string
+          format: date-time
+        examples:
+          example:
+            summary: example
+            value: 53676
+      responses:
+        '200':
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DateQueryParamGetResponseBody'
+      summary: Get datequeryparams
+      x-summary-source: derived
+components:
+  schemas:
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    NotFoundError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    TestValuesGetResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+        number:
+          type: string
+      example:
+        message: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        number: '102.4'
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    BadRequestError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    UnauthorizedAltError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    DateQueryParamGetResponseBody:
+      type: object
+      properties:
+        dateTimeOnly:
+          type: string
+        dateTimeOnlyParsedValue:
+          type: string
+        dateTime:
+          type: string
+        dateTimeParsedValue:
+          type: string
+        dateTime2616:
+          type: string
+        dateTime2616ParsedValue:
+          type: string
+        date:
+          type: string
+        dateParsedValue:
+          type: string
+        time:
+          type: string
+        timeParsedValue:
+          type: string
+        formatDateTime:
+          type: string
+          description: The dateTime parameter formatted as 'date-time', java.util.Date or java.time.ZoneDateTime
+          format: date-time
+        formatDate:
+          type: string
+          description: The date parameter formatted as 'date', String or java.time.LocalDate
+          format: date
+        formatTime:
+          type: string
+          description: The time parameter formatted as 'time', String or java.time.LocalTime
+        formatUtcMillisec:
+          type: string
+          description: The dateTime parameter formatted as 'date', long
+    TestHeadersResponseBody:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              url:
+                type: string
+              headers:
+                type: object
+    RequiredbooleanqueryparamGetResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+    ErrorItem:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Default Message. Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          description: Context can be anything used to construct localised messages.
+      description: A validation error

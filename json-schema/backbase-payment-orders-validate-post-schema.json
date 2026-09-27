@@ -1,0 +1,401 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backbase/main/json-schema/backbase-payment-orders-validate-post-schema.json",
+  "title": "InitiatePaymentOrder",
+  "x-generated": "2026-09-27",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/payment-order-client-api-v2.0.0.yaml#/components/schemas/PaymentOrdersValidatePost",
+  "required": [
+    "originatorAccount",
+    "requestedExecutionDate",
+    "transferTransactionInformation"
+  ],
+  "type": "object",
+  "properties": {
+    "originatorAccount": {
+      "$ref": "#/$defs/AccountIdentification"
+    },
+    "batchBooking": {
+      "type": "boolean",
+      "description": "Indicate whenever there should be only one debit posting for the whole set of instructions"
+    },
+    "instructionPriority": {
+      "type": "string",
+      "description": "Specify the priority of execution of the payment order.",
+      "enum": [
+        "NORM",
+        "HIGH"
+      ]
+    },
+    "requestedExecutionDate": {
+      "type": "string",
+      "description": "The preferred date for the payment order to be executed.",
+      "format": "date"
+    },
+    "paymentMode": {
+      "type": "string",
+      "description": "Denotes whether payment will be single or will be recurring",
+      "enum": [
+        "SINGLE",
+        "RECURRING"
+      ]
+    },
+    "paymentType": {
+      "maxLength": 22,
+      "minLength": 1,
+      "type": "string",
+      "description": "The type of payment."
+    },
+    "schedule": {
+      "$ref": "#/$defs/Schedule"
+    },
+    "entryClass": {
+      "maxLength": 3,
+      "type": "string",
+      "description": "Used for ACH Standard Entry Class (SEC) Code to designate how the transaction was authorized by the originator."
+    },
+    "transferTransactionInformation": {
+      "$ref": "#/$defs/InitiateTransaction"
+    },
+    "approved": {
+      "type": "boolean",
+      "description": "When set to true, the submitted payment order will also be approved by the user."
+    }
+  },
+  "$defs": {
+    "AccountIdentification": {
+      "required": [
+        "identification"
+      ],
+      "type": "object",
+      "properties": {
+        "identification": {
+          "$ref": "#/$defs/Identification"
+        },
+        "name": {
+          "maxLength": 140,
+          "type": "string",
+          "description": "This is the name of the account, and not the name of the account holder."
+        }
+      }
+    },
+    "Bank": {
+      "type": "object",
+      "properties": {
+        "bankBranchCode": {
+          "maxLength": 11,
+          "type": "string",
+          "description": "Some code to identify a bank office, p.e. ABA routing transit number (9) or Swift BIC code (11)"
+        },
+        "name": {
+          "maxLength": 140,
+          "type": "string",
+          "description": "The name of a bank"
+        },
+        "postalAddress": {
+          "$ref": "#/$defs/PostalAddress"
+        },
+        "bic": {
+          "pattern": "^([A-Z0-9]){4}([A-Z]){2}([A-Z0-9]){2}([A-Z0-9]{3})?$",
+          "type": "string",
+          "description": "Business identifier code as specified by ISO 9362:2014"
+        }
+      },
+      "description": "This object is used to identify the counterparty or correspondent bank."
+    },
+    "Currency": {
+      "$ref": "#/$defs/currency"
+    },
+    "Identification": {
+      "required": [
+        "identification",
+        "schemeName"
+      ],
+      "type": "object",
+      "properties": {
+        "identification": {
+          "maxLength": 36,
+          "type": "string",
+          "description": "The identifier of the account. Can be a regular account number, or an ID."
+        },
+        "schemeName": {
+          "type": "string",
+          "description": "This describes the type of the account identifier. ID will mean it refers to an account known within DBS.",
+          "enum": [
+            "IBAN",
+            "BBAN",
+            "ID",
+            "EXTERNAL_ID"
+          ]
+        }
+      }
+    },
+    "InitiateCounterpartyAccount": {
+      "type": "object",
+      "properties": {
+        "accountType": {
+          "maxLength": 10,
+          "type": "string",
+          "description": "The type of the account, e.g. for ACH we have CHECKING/SAVINGS"
+        },
+        "selectedContact": {
+          "$ref": "#/$defs/SelectedContactDto"
+        }
+      },
+      "description": "The counterparty Account is the original account identification plus the type of account if applicable. It also holds the details of the selected contact, if any.",
+      "allOf": [
+        {
+          "$ref": "#/$defs/AccountIdentification"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "InitiateTransaction": {
+      "required": [
+        "counterparty",
+        "counterpartyAccount",
+        "instructedAmount"
+      ],
+      "type": "object",
+      "properties": {
+        "counterparty": {
+          "$ref": "#/$defs/InvolvedParty"
+        },
+        "counterpartyAccount": {
+          "$ref": "#/$defs/InitiateCounterpartyAccount"
+        },
+        "counterpartyBank": {
+          "$ref": "#/$defs/Bank"
+        },
+        "instructedAmount": {
+          "$ref": "#/$defs/Currency"
+        },
+        "correspondentBank": {
+          "$ref": "#/$defs/Bank"
+        },
+        "intermediaryBank": {
+          "$ref": "#/$defs/Bank"
+        },
+        "messageToBank": {
+          "maxLength": 140,
+          "type": "string",
+          "description": "The message to the bank used for US domestic wire payments"
+        },
+        "targetCurrency": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string",
+          "description": "The alpha-3 code (complying with ISO 4217) of the currency"
+        },
+        "remittanceInformation": {
+          "maxLength": 140,
+          "type": "string",
+          "description": "The remittance info for manually initiated credit transfers. Does not have a type since it will always default to UNSTRUCTURED."
+        },
+        "endToEndIdentification": {
+          "maxLength": 35,
+          "type": "string"
+        },
+        "mandateIdentifier": {
+          "maxLength": 15,
+          "type": "string",
+          "description": "The mandate identifier, of the counter party, giving permission for the debit order."
+        },
+        "chargeBearer": {
+          "type": "string",
+          "description": "Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).",
+          "enum": [
+            "OUR",
+            "BEN",
+            "SHA"
+          ]
+        },
+        "transferFee": {
+          "$ref": "#/$defs/Currency"
+        },
+        "additions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "description": "The object defining the transaction to be initiated."
+    },
+    "InvolvedParty": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 140,
+          "type": "string"
+        },
+        "role": {
+          "type": "string",
+          "description": "These are the possible values the role of an involved party can  have.",
+          "enum": [
+            "CREDITOR",
+            "DEBTOR"
+          ]
+        },
+        "postalAddress": {
+          "$ref": "#/$defs/PostalAddress"
+        },
+        "recipientId": {
+          "maxLength": 15,
+          "type": "string",
+          "description": "Used for ACH Credit to indicate the id of the recipient"
+        }
+      },
+      "description": "This object is a common denominator for the debtor or creditor party."
+    },
+    "PostalAddress": {
+      "type": "object",
+      "properties": {
+        "addressLine1": {
+          "maxLength": 70,
+          "type": "string"
+        },
+        "addressLine2": {
+          "maxLength": 70,
+          "type": "string"
+        },
+        "streetName": {
+          "maxLength": 70,
+          "type": "string"
+        },
+        "postCode": {
+          "maxLength": 16,
+          "type": "string"
+        },
+        "town": {
+          "maxLength": 35,
+          "type": "string"
+        },
+        "countrySubDivision": {
+          "maxLength": 35,
+          "type": "string"
+        },
+        "country": {
+          "maxLength": 2,
+          "type": "string"
+        }
+      },
+      "description": "Postal address object with fields"
+    },
+    "Schedule": {
+      "required": [
+        "every",
+        "on",
+        "startDate",
+        "transferFrequency"
+      ],
+      "type": "object",
+      "properties": {
+        "nonWorkingDayExecutionStrategy": {
+          "type": "string",
+          "description": "Strategy for executing payments on non-working days",
+          "enum": [
+            "BEFORE",
+            "AFTER",
+            "NONE"
+          ]
+        },
+        "transferFrequency": {
+          "type": "string",
+          "description": "Denotes how frequently the transfer should be made",
+          "enum": [
+            "ONCE",
+            "DAILY",
+            "WEEKLY",
+            "BIWEEKLY",
+            "MONTHLY",
+            "QUARTERLY",
+            "YEARLY"
+          ]
+        },
+        "on": {
+          "type": "integer",
+          "description": "Denotes day on which transfer should be executed. For WEEKLY transferFrequency it will be 1..7 indicating weekday. For BIWEEKLY it will be 1..14 indicating the day of the two week period. For MONTHLY it will be 1..31 indicating day of month. For YEARLY it will be 1..12 indicating month of the year.",
+          "format": "int32"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "When to start executing the schedule. First transfer will be executed on first calculated date by schedule after this date.",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "When to stop transfers. Transfers will not be executed after this date. Only one of endDate and repeat is possible. If neither repeat nor endDate is provided transfer will be executed until canceled",
+          "format": "date"
+        },
+        "repeat": {
+          "type": "integer",
+          "description": "Number of transfer to be executed. Only one of endDate and repeat is possible. If neither repeat nor endDate is provided transfer will be executed until canceled",
+          "format": "int32"
+        },
+        "every": {
+          "type": "integer",
+          "description": "Indicates skip interval of transfer. 1 would mean execute every time, 2 - every other time",
+          "format": "int32",
+          "enum": [
+            1,
+            2
+          ]
+        },
+        "nextExecutionDate": {
+          "type": "string",
+          "description": "Date when the next payment will be executed, taking in consideration bank holidays and cut-off times. It will be only retrieved when getting payments, it will be dismissed when creating or updating.",
+          "format": "date"
+        }
+      },
+      "description": "Schedule for recurring transfer. Mandatory if paymentMode is RECURRING"
+    },
+    "SelectedContactDto": {
+      "type": "object",
+      "properties": {
+        "contactId": {
+          "type": "string",
+          "description": "The id of the selected contact."
+        },
+        "accountId": {
+          "type": "string",
+          "description": "The id of the selected account."
+        }
+      },
+      "description": "Holds the contact and account id when an account from a contact was selected while creating a payment. This information is not persisted in DBS but can be used in service extensions to enrich details from the selected contact and store it in the additional properties of the payment order."
+    },
+    "currency": {
+      "title": "Currency",
+      "required": [
+        "amount",
+        "currencyCode"
+      ],
+      "type": "object",
+      "properties": {
+        "amount": {
+          "maximum": 1e+18,
+          "minimum": -1e+18,
+          "type": "string",
+          "description": "The amount in the specified currency"
+        },
+        "currencyCode": {
+          "pattern": "^[A-Z]{3}$",
+          "type": "string",
+          "description": "The alpha-3 code (complying with ISO 4217) of the currency that qualifies the amount"
+        },
+        "additions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional properties"
+        }
+      }
+    }
+  }
+}

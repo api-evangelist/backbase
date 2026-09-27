@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/backbase/main/json-schema/backbase-test-values-get-response-body-schema.json",
+  "title": "TestValuesGetResponseBody",
+  "x-generated": "2026-09-27",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/_original/backbase-openapi-openapi.yml#/components/schemas/TestValuesGetResponseBody",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    }
+  }
+}

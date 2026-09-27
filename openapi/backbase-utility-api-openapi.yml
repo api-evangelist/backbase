@@ -1,0 +1,199 @@
+openapi: 3.2.0
+info:
+  title: Payment Orders Client Utility API
+  description: Provides access to querying, initiating, approving and managing (recurring) payment orders, payment order drafts and batch payments.
+  version: 2.0.0
+servers:
+- url: http://localhost:4010
+  description: mock-api-server
+- url: http://localhost:8080
+  description: Springboot default port
+- url: https://localhost:8081
+  description: 'Best practice: use https'
+tags:
+- name: Utility
+  description: Utility endpoints.
+paths:
+  /client-api/v2/payment-orders/currencies:
+    summary: Currencies
+    description: Endpoint to manipulate currencies
+    get:
+      tags:
+      - Utility
+      description: Get currencies available for payment
+      operationId: getCurrencies
+      responses:
+        '200':
+          description: Currencies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrenciesGet'
+              example:
+                $ref: '#/components/examples/payment-orders-currencies-get-response'
+        '500':
+          description: InternalServer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal-server-error'
+              example:
+                $ref: '#/components/examples/lib-internal-server-error'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bad-request-error'
+              example:
+                $ref: '#/components/examples/lib-bad-request-validation-error'
+      summary: Get currencies
+      x-summary-source: derived
+  /client-api/v2/payment-orders/rate:
+    summary: Rate
+    description: Endpoint to get exchange rate
+    get:
+      tags:
+      - Utility
+      description: Get available rate for currencies
+      operationId: getRate
+      parameters:
+      - name: currencyFrom
+        in: query
+        description: Currency transfer from
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: EUR
+      - name: currencyTo
+        in: query
+        description: Currency transfer to
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: USD
+      responses:
+        '200':
+          description: Response containing converted rate
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RateGet'
+              example:
+                $ref: '#/components/examples/payment-orders-rate-get-response'
+        '500':
+          description: InternalServer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal-server-error'
+              example:
+                $ref: '#/components/examples/lib-internal-server-error'
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/bad-request-error'
+              example:
+                $ref: '#/components/examples/lib-bad-request-validation-error'
+      summary: Get rate
+      x-summary-source: derived
+components:
+  examples:
+    lib-bad-request-validation-error:
+      summary: lib-bad-request-validation-error
+      value:
+        message: Bad Request
+        errors:
+        - message: Value Exceeded. Must be between {min} and {max}.
+          key: common.api.shoesize
+          context:
+            max: '50'
+            min: '1'
+    payment-orders-currencies-get-response:
+      summary: payment-orders-currencies-get-response
+      value:
+      - code: EUR
+      - code: USD
+      - code: GBP
+      - code: ISK
+      - code: KWD
+    lib-internal-server-error:
+      summary: lib-internal-server-error
+      value:
+        message: Description of error
+    payment-orders-rate-get-response:
+      summary: payment-orders-rate-get-response
+      value:
+        rate: 1.07
+  schemas:
+    CurrenciesGetResponseBody:
+      $ref: '#/components/schemas/currencies-get-response-body'
+    RateGet:
+      title: RateGet
+      required:
+      - rate
+      type: object
+      properties:
+        rate:
+          type: number
+          description: Rate for given currencies
+    CurrenciesGet:
+      title: CurrenciesGet
+      type: array
+      description: Currencies available for payment response
+      items:
+        $ref: '#/components/schemas/CurrenciesGetResponseBody'
+    currencies-get-response-body:
+      title: Currency
+      required:
+      - code
+      type: object
+      properties:
+        code:
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: The alpha-3 code (complying with ISO 4217) of the currency
+      description: Currency
+    internal-server-error:
+      title: InternalServerError
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    bad-request-error:
+      title: BadRequestError
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/error-item'
+    error-item:
+      title: ErrorItem
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          additionalProperties:
+            type: string
+          description: Context can be anything used to construct localised messages.

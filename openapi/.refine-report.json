@@ -1,0 +1,33 @@
+{
+  "provider": "backbase",
+  "sources": [
+    "_original/backbase-openapi-openapi.yml",
+    "payment-order-client-api-v2.0.0.yaml"
+  ],
+  "outputs": [
+    "backbase-bbt-api-openapi.yml",
+    "backbase-patch-api-openapi.yml",
+    "backbase-test-api-openapi.yml",
+    "backbase-wallet-api-openapi.yml",
+    "backbase-approve-api-openapi.yml",
+    "backbase-payment-orders-api-openapi.yml",
+    "backbase-utility-api-openapi.yml",
+    "backbase-validate-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/payment-order-client-api-v2.0.0.yaml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "backbase-openapi-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "backbase-openapi-openapi.yml: declared missing tag: bbt",
+    "backbase-openapi-openapi.yml: declared missing tag: patch",
+    "backbase-openapi-openapi.yml: declared missing tag: test",
+    "backbase-openapi-openapi.yml: declared missing tag: wallet",
+    "payment-order-client-api-v2.0.0.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: written (+8 apis, 8 total)"
+  ],
+  "skipped": []
+}

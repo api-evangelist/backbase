@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  title: Wallet Test Client Patch API
+  description: No description available
+  version: v1
+servers:
+- url: /serviceName/client-api/v1
+  description: The server
+tags:
+- name: Patch
+paths:
+  /patch:
+    summary: patch
+    description: PATCH endpoint for test operations
+    patch:
+      tags:
+      - Patch
+      summary: Patch Test
+      operationId: patchPatch
+      parameters:
+      - name: X-Request-Id
+        in: header
+        description: Correlates HTTP requests between a client and server.
+        required: false
+        schema:
+          type: string
+        examples:
+          example:
+            summary: example
+            value: f058ebd6-02f7-4d3f-942e-904344e8cde5
+      responses:
+        '200':
+          description: No description available
+          content: {}
+        '400':
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Bad Request\",\n  \"errors\" : [ {\n    \"message\" : \"Value Exceeded. Must be between {min} and {max}.\",\n    \"key\" : \"common.api.shoesize\",\n    \"context\" : {\n      \"max\" : \"50\",\n      \"min\" : \"1\"\n    }\n  } ]\n}"
+        '500':
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Description of error\"\n}"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Access to requested resource denied.\",\n  \"errors\" : [ {\n    \"message\" : \"Resource access denied due to an insufficient user quota of {quota}.\",\n    \"key\" : \"common.api.quota\",\n    \"context\" : {\n      \"quota\" : \"someQuota\"\n    }\n  } ]\n}"
+        '415':
+          description: UnsupportedMediaType
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnsupportedMediaTypeError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Unsupported media type.\",\n  \"errors\" : [ {\n    \"message\" : \"The request entity has a media type {mediaType} which the resource does not support.\",\n    \"key\" : \"common.api.mediaType\",\n    \"context\" : {\n      \"mediaType\" : \"application/javascript\"\n    }\n  } ]\n}"
+        '404':
+          description: NotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Resource not found.\",\n  \"errors\" : [ {\n    \"message\" : \"Unable to find the resource requested resource: {resource}.\",\n    \"key\" : \"common.api.resource\",\n    \"context\" : {\n      \"resource\" : \"aResource\"\n    }\n  } ]\n}"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedAltError'
+              examples:
+                example:
+                  value: "{\n  \"message\" : \"Access to requested resource denied.\",\n  \"errors\" : [ {\n    \"message\" : \"Resource access denied due to invalid credentials.\",\n    \"key\" : \"common.api.token\",\n    \"context\" : {\n      \"accessToken\" : \"expired\"\n    }\n  } ]\n}"
+components:
+  schemas:
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    NotFoundError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    BadRequestError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    UnauthorizedAltError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    ErrorItem:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Default Message. Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          description: Context can be anything used to construct localised messages.
+      description: A validation error

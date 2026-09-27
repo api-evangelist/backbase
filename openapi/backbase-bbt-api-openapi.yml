@@ -1,0 +1,39 @@
+openapi: 3.2.0
+info:
+  title: Wallet Test Client Bbt API
+  description: No description available
+  version: v1
+servers:
+- url: /serviceName/client-api/v1
+  description: The server
+tags:
+- name: bbt
+paths:
+  /bbt/build-info:
+    summary: /build-info
+    description: No description available
+    get:
+      tags:
+      - bbt
+      summary: Build Information
+      operationId: getBuildinfo
+      responses:
+        '200':
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BbtBuild-infoGetGetResponseBody'
+              examples:
+                example:
+                  value: "{\n  \"build-info\" : {\n    \"build.version\" : \"1.1.111-SNAPSHOT\"\n  }\n}"
+components:
+  schemas:
+    BbtBuild-infoGetGetResponseBody:
+      type: object
+      properties:
+        build-info:
+          type: object
+      example:
+        build-info:
+          build.version: 1.1.111-SNAPSHOT

@@ -1,0 +1,637 @@
+{
+  "@context": {
+    "@vocab": "https://backbase.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "backbase": "https://backbase.com/schema#",
+    "PaymentOrdersPost": "backbase:PaymentOrdersPost",
+    "originatorAccount": {
+      "@id": "backbase:originatorAccount",
+      "@type": "@id"
+    },
+    "batchBooking": {
+      "@id": "backbase:batchBooking",
+      "@type": "xsd:boolean"
+    },
+    "instructionPriority": {
+      "@id": "backbase:instructionPriority",
+      "@type": "xsd:string"
+    },
+    "requestedExecutionDate": {
+      "@id": "backbase:requestedExecutionDate",
+      "@type": "xsd:date"
+    },
+    "paymentMode": {
+      "@id": "backbase:paymentMode",
+      "@type": "xsd:string"
+    },
+    "paymentType": {
+      "@id": "backbase:paymentType",
+      "@type": "xsd:string"
+    },
+    "schedule": {
+      "@id": "backbase:schedule",
+      "@type": "@id"
+    },
+    "entryClass": {
+      "@id": "backbase:entryClass",
+      "@type": "xsd:string"
+    },
+    "transferTransactionInformation": {
+      "@id": "backbase:transferTransactionInformation",
+      "@type": "@id"
+    },
+    "approved": {
+      "@id": "backbase:approved",
+      "@type": "xsd:boolean"
+    },
+    "PaymentOrdersPostResponse": "backbase:PaymentOrdersPostResponse",
+    "id": {
+      "@id": "backbase:id",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "backbase:status",
+      "@type": "xsd:string"
+    },
+    "bankStatus": {
+      "@id": "backbase:bankStatus",
+      "@type": "xsd:string"
+    },
+    "reasonCode": {
+      "@id": "backbase:reasonCode",
+      "@type": "xsd:string"
+    },
+    "reasonText": {
+      "@id": "backbase:reasonText",
+      "@type": "xsd:string"
+    },
+    "errorDescription": {
+      "@id": "backbase:errorDescription",
+      "@type": "xsd:string"
+    },
+    "nextExecutionDate": {
+      "@id": "backbase:nextExecutionDate",
+      "@type": "xsd:date"
+    },
+    "paymentSetupId": {
+      "@id": "backbase:paymentSetupId",
+      "@type": "xsd:string"
+    },
+    "paymentSubmissionId": {
+      "@id": "backbase:paymentSubmissionId",
+      "@type": "xsd:string"
+    },
+    "approvalStatus": {
+      "@id": "backbase:approvalStatus",
+      "@type": "xsd:string"
+    },
+    "transferFee": {
+      "@id": "backbase:transferFee",
+      "@type": "@id"
+    },
+    "exchangeRateInformation": {
+      "@id": "backbase:exchangeRateInformation",
+      "@type": "@id"
+    },
+    "additions": {
+      "@id": "backbase:additions"
+    },
+    "PaymentOrdersValidatePost": "backbase:PaymentOrdersValidatePost",
+    "PaymentOrdersValidatePostResponse": "backbase:PaymentOrdersValidatePostResponse",
+    "originator": {
+      "@id": "backbase:originator",
+      "@type": "@id"
+    },
+    "totalAmount": {
+      "@id": "backbase:totalAmount",
+      "@type": "@id"
+    },
+    "isIntraLegalEntityPaymentOrder": {
+      "@id": "backbase:isIntraLegalEntityPaymentOrder",
+      "@type": "xsd:boolean"
+    },
+    "canApprove": {
+      "@id": "backbase:canApprove",
+      "@type": "xsd:boolean"
+    },
+    "finalApprover": {
+      "@id": "backbase:finalApprover",
+      "@type": "xsd:boolean"
+    },
+    "BulkPaymentOrdersApprovalPutRequest": "backbase:BulkPaymentOrdersApprovalPutRequest",
+    "paymentOrderIds": {
+      "@id": "backbase:paymentOrderIds",
+      "@container": "@list"
+    },
+    "comment": {
+      "@id": "backbase:comment",
+      "@type": "xsd:string"
+    },
+    "BulkPaymentOrdersApprovalPutResponse": "backbase:BulkPaymentOrdersApprovalPutResponse",
+    "paymentOrders": {
+      "@id": "backbase:paymentOrders",
+      "@container": "@list"
+    },
+    "successCount": {
+      "@id": "backbase:successCount",
+      "@type": "xsd:integer"
+    },
+    "failCount": {
+      "@id": "backbase:failCount",
+      "@type": "xsd:integer"
+    },
+    "PaymentOrderGetResponse": "backbase:PaymentOrderGetResponse",
+    "approvalDetails": {
+      "@id": "backbase:approvalDetails",
+      "@type": "@id"
+    },
+    "approvalId": {
+      "@id": "backbase:approvalId",
+      "@type": "xsd:string"
+    },
+    "createdBy": {
+      "@id": "backbase:createdBy",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "backbase:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "updatedBy": {
+      "@id": "backbase:updatedBy",
+      "@type": "xsd:string"
+    },
+    "updatedAt": {
+      "@id": "backbase:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "actions": {
+      "@id": "backbase:actions",
+      "@type": "@id"
+    },
+    "version": {
+      "@id": "backbase:version",
+      "@type": "xsd:integer"
+    },
+    "contextualInformation": {
+      "@id": "backbase:contextualInformation",
+      "@type": "@id"
+    },
+    "intraLegalEntity": {
+      "@id": "backbase:intraLegalEntity",
+      "@type": "xsd:boolean"
+    },
+    "originatorAccountCurrency": {
+      "@id": "backbase:originatorAccountCurrency",
+      "@type": "xsd:string"
+    },
+    "confirmationId": {
+      "@id": "backbase:confirmationId",
+      "@type": "xsd:string"
+    },
+    "PaymentOrderApprovalPutRequest": "backbase:PaymentOrderApprovalPutRequest",
+    "PaymentOrderCancelPostRequest": "backbase:PaymentOrderCancelPostRequest",
+    "PaymentOrderCancelPostResponse": "backbase:PaymentOrderCancelPostResponse",
+    "accepted": {
+      "@id": "backbase:accepted",
+      "@type": "xsd:boolean"
+    },
+    "RateGet": "backbase:RateGet",
+    "rate": {
+      "@id": "backbase:rate",
+      "@type": "xsd:decimal"
+    },
+    "BadRequestError": "backbase:BadRequestError",
+    "message": {
+      "@id": "backbase:message",
+      "@type": "xsd:string"
+    },
+    "errors": {
+      "@id": "backbase:errors",
+      "@container": "@list"
+    },
+    "UnauthorizedError": "backbase:UnauthorizedError",
+    "internal-server-error": "backbase:internal-server-error",
+    "forbidden-error": "backbase:forbidden-error",
+    "BreachReportError": "backbase:BreachReportError",
+    "payment": {
+      "@id": "backbase:payment",
+      "@type": "@id"
+    },
+    "checkTime": {
+      "@id": "backbase:checkTime",
+      "@type": "xsd:dateTime"
+    },
+    "breachReport": {
+      "@id": "backbase:breachReport",
+      "@container": "@list"
+    },
+    "IdentifiedPaymentOrder": "backbase:IdentifiedPaymentOrder",
+    "ContextualInformation": "backbase:ContextualInformation",
+    "externalUserId": {
+      "@id": "backbase:externalUserId",
+      "@type": "xsd:string"
+    },
+    "internalUserId": {
+      "@id": "backbase:internalUserId",
+      "@type": "xsd:string"
+    },
+    "serviceAgreementId": {
+      "@id": "backbase:serviceAgreementId",
+      "@type": "xsd:string"
+    },
+    "legalEntityId": {
+      "@id": "backbase:legalEntityId",
+      "@type": "xsd:string"
+    },
+    "origin": {
+      "@id": "backbase:origin",
+      "@type": "xsd:string"
+    },
+    "InvolvedParty": "backbase:InvolvedParty",
+    "name": {
+      "@id": "backbase:name",
+      "@type": "xsd:string"
+    },
+    "role": {
+      "@id": "backbase:role",
+      "@type": "xsd:string"
+    },
+    "postalAddress": {
+      "@id": "backbase:postalAddress",
+      "@type": "@id"
+    },
+    "recipientId": {
+      "@id": "backbase:recipientId",
+      "@type": "xsd:string"
+    },
+    "PaymentMode": "backbase:PaymentMode",
+    "Schedule": "backbase:Schedule",
+    "nonWorkingDayExecutionStrategy": {
+      "@id": "backbase:nonWorkingDayExecutionStrategy",
+      "@type": "xsd:string"
+    },
+    "transferFrequency": {
+      "@id": "backbase:transferFrequency",
+      "@type": "xsd:string"
+    },
+    "on": {
+      "@id": "backbase:on",
+      "@type": "xsd:integer"
+    },
+    "startDate": {
+      "@id": "backbase:startDate",
+      "@type": "xsd:date"
+    },
+    "endDate": {
+      "@id": "backbase:endDate",
+      "@type": "xsd:date"
+    },
+    "repeat": {
+      "@id": "backbase:repeat",
+      "@type": "xsd:integer"
+    },
+    "every": {
+      "@id": "backbase:every",
+      "@type": "xsd:integer"
+    },
+    "IdentifiedTransaction": "backbase:IdentifiedTransaction",
+    "counterparty": {
+      "@id": "backbase:counterparty",
+      "@type": "@id"
+    },
+    "counterpartyAccount": {
+      "@id": "backbase:counterpartyAccount",
+      "@type": "@id"
+    },
+    "counterpartyBank": {
+      "@id": "backbase:counterpartyBank",
+      "@type": "@id"
+    },
+    "instructedAmount": {
+      "@id": "backbase:instructedAmount",
+      "@type": "@id"
+    },
+    "correspondentBank": {
+      "@id": "backbase:correspondentBank",
+      "@type": "@id"
+    },
+    "intermediaryBank": {
+      "@id": "backbase:intermediaryBank",
+      "@type": "@id"
+    },
+    "messageToBank": {
+      "@id": "backbase:messageToBank",
+      "@type": "xsd:string"
+    },
+    "targetCurrency": {
+      "@id": "backbase:targetCurrency",
+      "@type": "xsd:string"
+    },
+    "remittanceInformation": {
+      "@id": "backbase:remittanceInformation",
+      "@type": "@id"
+    },
+    "endToEndIdentification": {
+      "@id": "backbase:endToEndIdentification",
+      "@type": "xsd:string"
+    },
+    "mandateIdentifier": {
+      "@id": "backbase:mandateIdentifier",
+      "@type": "xsd:string"
+    },
+    "chargeBearer": {
+      "@id": "backbase:chargeBearer",
+      "@type": "xsd:string"
+    },
+    "CounterpartyAccount": "backbase:CounterpartyAccount",
+    "accountType": {
+      "@id": "backbase:accountType",
+      "@type": "xsd:string"
+    },
+    "arrangementId": {
+      "@id": "backbase:arrangementId",
+      "@type": "xsd:string"
+    },
+    "externalArrangementId": {
+      "@id": "backbase:externalArrangementId",
+      "@type": "xsd:string"
+    },
+    "identification": {
+      "@id": "backbase:identification",
+      "@type": "@id"
+    },
+    "Bank": "backbase:Bank",
+    "bankBranchCode": {
+      "@id": "backbase:bankBranchCode",
+      "@type": "xsd:string"
+    },
+    "bic": {
+      "@id": "backbase:bic",
+      "@type": "xsd:string"
+    },
+    "currency": "backbase:currency",
+    "amount": {
+      "@id": "backbase:amount",
+      "@type": "xsd:string"
+    },
+    "currencyCode": {
+      "@id": "backbase:currencyCode",
+      "@type": "xsd:string"
+    },
+    "BreachReportItem": "backbase:BreachReportItem",
+    "limitedEntity": {
+      "@id": "backbase:limitedEntity",
+      "@container": "@list"
+    },
+    "shadow": {
+      "@id": "backbase:shadow",
+      "@type": "xsd:boolean"
+    },
+    "user-BBID": {
+      "@id": "backbase:user-BBID",
+      "@type": "xsd:string"
+    },
+    "breachInfo": {
+      "@id": "backbase:breachInfo",
+      "@container": "@list"
+    },
+    "EntityDescription": "backbase:EntityDescription",
+    "ref": {
+      "@id": "backbase:ref",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "backbase:type",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "backbase:description",
+      "@type": "xsd:string"
+    },
+    "BreachInfo": "backbase:BreachInfo",
+    "breachType": {
+      "@id": "backbase:breachType",
+      "@type": "xsd:string"
+    },
+    "breachedLimitType": {
+      "@id": "backbase:breachedLimitType",
+      "@type": "xsd:string"
+    },
+    "timeframe": {
+      "@id": "backbase:timeframe",
+      "@type": "@id"
+    },
+    "currentConsumption": {
+      "@id": "backbase:currentConsumption",
+      "@type": "xsd:string"
+    },
+    "currentThreshold": {
+      "@id": "backbase:currentThreshold",
+      "@type": "xsd:string"
+    },
+    "TimeFrame": "backbase:TimeFrame",
+    "period": {
+      "@id": "backbase:period",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "backbase:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "backbase:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "bad-request-error": "backbase:bad-request-error",
+    "not-found-error": "backbase:not-found-error",
+    "unauthorized-error": "backbase:unauthorized-error",
+    "InitiatePaymentOrder": "backbase:InitiatePaymentOrder",
+    "InitiateTransaction": "backbase:InitiateTransaction",
+    "InitiateCounterpartyAccount": "backbase:InitiateCounterpartyAccount",
+    "selectedContact": {
+      "@id": "backbase:selectedContact",
+      "@type": "@id"
+    },
+    "SelectedContactDto": "backbase:SelectedContactDto",
+    "contactId": {
+      "@id": "backbase:contactId",
+      "@type": "xsd:string"
+    },
+    "accountId": {
+      "@id": "backbase:accountId",
+      "@type": "xsd:string"
+    },
+    "payment-orders-post-response": "backbase:payment-orders-post-response",
+    "validate-payment-order-response": "backbase:validate-payment-order-response",
+    "bulk-payment-orders-approval-put-request": "backbase:bulk-payment-orders-approval-put-request",
+    "bulk-payment-orders-approval-put-response": "backbase:bulk-payment-orders-approval-put-response",
+    "payment-order-get-response": "backbase:payment-order-get-response",
+    "payment-order-approval-request": "backbase:payment-order-approval-request",
+    "payment-order-cancel-request": "backbase:payment-order-cancel-request",
+    "payment-order-cancel-response": "backbase:payment-order-cancel-response",
+    "rate-get-response": "backbase:rate-get-response",
+    "error-item": "backbase:error-item",
+    "key": {
+      "@id": "backbase:key",
+      "@type": "xsd:string"
+    },
+    "context": {
+      "@id": "backbase:context"
+    },
+    "Status": "backbase:Status",
+    "OriginatorAccount": "backbase:OriginatorAccount",
+    "Identification": "backbase:Identification",
+    "schemeName": {
+      "@id": "backbase:schemeName",
+      "@type": "xsd:string"
+    },
+    "SchemeNames": "backbase:SchemeNames",
+    "InstructionPriority": "backbase:InstructionPriority",
+    "InvolvedPartyRole": "backbase:InvolvedPartyRole",
+    "PostalAddress": "backbase:PostalAddress",
+    "addressLine1": {
+      "@id": "backbase:addressLine1",
+      "@type": "xsd:string"
+    },
+    "addressLine2": {
+      "@id": "backbase:addressLine2",
+      "@type": "xsd:string"
+    },
+    "streetName": {
+      "@id": "backbase:streetName",
+      "@type": "xsd:string"
+    },
+    "postCode": {
+      "@id": "backbase:postCode",
+      "@type": "xsd:string"
+    },
+    "town": {
+      "@id": "backbase:town",
+      "@type": "xsd:string"
+    },
+    "countrySubDivision": {
+      "@id": "backbase:countrySubDivision",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "backbase:country",
+      "@type": "xsd:string"
+    },
+    "RemittanceInformation": "backbase:RemittanceInformation",
+    "content": {
+      "@id": "backbase:content",
+      "@type": "xsd:string"
+    },
+    "ChargeBearer": "backbase:ChargeBearer",
+    "ExchangeRateInformation": "backbase:ExchangeRateInformation",
+    "rateType": {
+      "@id": "backbase:rateType",
+      "@type": "xsd:string"
+    },
+    "contractIdentification": {
+      "@id": "backbase:contractIdentification",
+      "@type": "xsd:string"
+    },
+    "AccountIdentification": "backbase:AccountIdentification",
+    "ApprovalStatus": "backbase:ApprovalStatus",
+    "ApprovalStatus_2": "backbase:ApprovalStatus_2",
+    "ErrorItem": "backbase:ErrorItem",
+    "PresentationApprovalDetailDto": "backbase:PresentationApprovalDetailDto",
+    "approvalTypes": {
+      "@id": "backbase:approvalTypes",
+      "@container": "@list"
+    },
+    "policy": {
+      "@id": "backbase:policy",
+      "@type": "@id"
+    },
+    "userId": {
+      "@id": "backbase:userId",
+      "@type": "xsd:string"
+    },
+    "userFullName": {
+      "@id": "backbase:userFullName",
+      "@type": "xsd:string"
+    },
+    "itemId": {
+      "@id": "backbase:itemId",
+      "@type": "xsd:string"
+    },
+    "dataAccessItemId": {
+      "@id": "backbase:dataAccessItemId",
+      "@type": "xsd:string"
+    },
+    "resource": {
+      "@id": "backbase:resource",
+      "@type": "xsd:string"
+    },
+    "function": {
+      "@id": "backbase:function",
+      "@type": "xsd:string"
+    },
+    "records": {
+      "@id": "backbase:records",
+      "@container": "@list"
+    },
+    "canReject": {
+      "@id": "backbase:canReject",
+      "@type": "xsd:boolean"
+    },
+    "action": {
+      "@id": "backbase:action",
+      "@type": "xsd:string"
+    },
+    "PresentationApprovalTypeDto": "backbase:PresentationApprovalTypeDto",
+    "rank": {
+      "@id": "backbase:rank",
+      "@type": "xsd:integer"
+    },
+    "PresentationPolicyDto": "backbase:PresentationPolicyDto",
+    "items": {
+      "@id": "backbase:items",
+      "@container": "@list"
+    },
+    "logicalItems": {
+      "@id": "backbase:logicalItems",
+      "@container": "@list"
+    },
+    "PresentationPolicyItemDto": "backbase:PresentationPolicyItemDto",
+    "approvalTypeId": {
+      "@id": "backbase:approvalTypeId",
+      "@type": "xsd:string"
+    },
+    "numberOfApprovals": {
+      "@id": "backbase:numberOfApprovals",
+      "@type": "xsd:integer"
+    },
+    "PresentationRecordDto": "backbase:PresentationRecordDto",
+    "currencies-get-response-body": "backbase:currencies-get-response-body",
+    "code": {
+      "@id": "backbase:code",
+      "@type": "xsd:string"
+    },
+    "LogicalPolicyDetailsDto": "backbase:LogicalPolicyDetailsDto",
+    "operator": {
+      "@id": "backbase:operator",
+      "@type": "xsd:string"
+    },
+    "LogicalOperator": "backbase:LogicalOperator",
+    "PolicyItemDetailsDto": "backbase:PolicyItemDetailsDto",
+    "approvalType": {
+      "@id": "backbase:approvalType",
+      "@type": "@id"
+    },
+    "ApprovalTypeDto": "backbase:ApprovalTypeDto",
+    "RecordStatus": "backbase:RecordStatus"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "BackBase API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects BackBase's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-09-27) from openapi/payment-order-client-api-v2.0.0.yaml.",
+  "dcterms:created": "2026-09-27",
+  "dcterms:source": [
+    "openapi/payment-order-client-api-v2.0.0.yaml"
+  ]
+}

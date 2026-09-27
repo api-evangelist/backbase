@@ -1,0 +1,48 @@
+generated: '2026-09-27'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/payment-order-client-api-v2.0.0.yaml
+format: custom
+envelope:
+  media_type: application/json
+  schema: internal-server-error
+coverage:
+  operations: 12
+  statuses_declared: 5
+problems:
+- status: 400
+  title: Bad Request
+  description: BadRequest
+  operations: 12
+  media_types:
+  - application/json
+  schema: bad-request-error
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 2
+  media_types:
+  - application/json
+  schema: UnauthorizedError
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  operations: 9
+  media_types:
+  - application/json
+  schema: forbidden-error
+- status: 404
+  title: Not Found
+  description: NotFound
+  operations: 2
+  media_types:
+  - application/json
+  schema: not-found-error
+- status: 500
+  title: Internal Server Error
+  description: InternalServer
+  operations: 12
+  media_types:
+  - application/json
+  schema: internal-server-error
