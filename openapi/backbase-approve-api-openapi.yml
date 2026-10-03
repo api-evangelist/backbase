@@ -84,31 +84,29 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    BreachInfo:
+    Currency:
+      $ref: '#/components/schemas/currency'
+    InvolvedParty:
       required:
-      - breachType
-      - currentConsumption
-      - currentThreshold
+      - name
       type: object
       properties:
-        breachType:
+        name:
+          maxLength: 140
           type: string
+        role:
+          type: string
+          description: These are the possible values the role of an involved party can  have.
           enum:
-          - THRESHOLD
-          - CONSUMPTION
-        breachedLimitType:
+          - CREDITOR
+          - DEBTOR
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        recipientId:
+          maxLength: 15
           type: string
-          enum:
-          - PERIODIC
-          - TRANSACTIONAL
-        timeframe:
-          $ref: '#/components/schemas/TimeFrame'
-        currentConsumption:
-          type: string
-          description: The amount in the specified currency
-        currentThreshold:
-          type: string
-          description: The amount in the specified currency
+          description: Used for ACH Credit to indicate the id of the recipient
+      description: This object is a common denominator for the debtor or creditor party.
     RemittanceInformation:
       required:
       - content
@@ -126,54 +124,6 @@ components:
           type: string
           description: The content of the remittance information.
       description: This is the object representation of the remittance info and can contain different types of remittance info. It is only used in responses, not for input requests!
-    IdentifiedTransaction:
-      required:
-      - counterparty
-      - counterpartyAccount
-      - instructedAmount
-      type: object
-      properties:
-        counterparty:
-          $ref: '#/components/schemas/InvolvedParty'
-        counterpartyAccount:
-          $ref: '#/components/schemas/CounterpartyAccount'
-        counterpartyBank:
-          $ref: '#/components/schemas/Bank'
-        instructedAmount:
-          $ref: '#/components/schemas/Currency'
-        correspondentBank:
-          $ref: '#/components/schemas/Bank'
-        intermediaryBank:
-          $ref: '#/components/schemas/Bank'
-        messageToBank:
-          maxLength: 140
-          type: string
-          description: The message to the bank used for US domestic wire payments
-        targetCurrency:
-          pattern: ^[A-Z]{3}$
-          type: string
-          description: The alpha-3 code (complying with ISO 4217) of the currency
-        remittanceInformation:
-          $ref: '#/components/schemas/RemittanceInformation'
-        endToEndIdentification:
-          maxLength: 35
-          type: string
-        mandateIdentifier:
-          maxLength: 15
-          type: string
-          description: The mandate identifier, of the counter party, giving permission for the debit order.
-        chargeBearer:
-          type: string
-          description: 'Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).'
-          enum:
-          - OUR
-          - BEN
-          - SHA
-        transferFee:
-          $ref: '#/components/schemas/Currency'
-        exchangeRateInformation:
-          $ref: '#/components/schemas/ExchangeRateInformation'
-      description: The object defining the identified transaction, which means the counterparty will have a arrangementId where applicable.
     PostalAddress:
       type: object
       properties:
@@ -199,47 +149,6 @@ components:
           maxLength: 2
           type: string
       description: Postal address object with fields
-    CounterpartyAccount:
-      required:
-      - identification
-      properties:
-        accountType:
-          maxLength: 10
-          type: string
-          description: The type of the account, e.g. for ACH we have CHECKING/SAVINGS
-        arrangementId:
-          maxLength: 36
-          minLength: 1
-          type: string
-          description: The unique arrangement id.
-        externalArrangementId:
-          maxLength: 70
-          minLength: 1
-          type: string
-          description: The external unique arrangement id.
-        identification:
-          $ref: '#/components/schemas/Identification'
-        name:
-          maxLength: 140
-          type: string
-          description: Default name field used in DBS
-      description: The counterparty Account is the original account identification plus the arrangement if applicable.
-    PaymentOrderApprovalPutRequest:
-      title: ApprovalStatusPutRequest
-      required:
-      - approvalStatus
-      type: object
-      properties:
-        approvalStatus:
-          type: string
-          description: The options for approval.
-          enum:
-          - APPROVED
-          - REJECTED
-        comment:
-          maxLength: 140
-          type: string
-          description: When approving or rejecting, the user can add comments which would explain the reason for the action.
     ContextualInformation:
       required:
       - externalUserId
@@ -271,6 +180,115 @@ components:
           minLength: 1
           type: string
           description: Name the system where endpoint is calling from
+    Bank:
+      type: object
+      properties:
+        bankBranchCode:
+          maxLength: 11
+          type: string
+          description: Some code to identify a bank office, p.e. ABA routing transit number (9) or Swift BIC code (11)
+        name:
+          maxLength: 140
+          type: string
+          description: The name of a bank
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        bic:
+          pattern: ^([A-Z0-9]){4}([A-Z]){2}([A-Z0-9]){2}([A-Z0-9]{3})?$
+          type: string
+          description: Business identifier code as specified by ISO 9362:2014
+      description: This object is used to identify the counterparty or correspondent bank.
+    BreachReportError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+        payment:
+          $ref: '#/components/schemas/IdentifiedPaymentOrder'
+        checkTime:
+          type: string
+          format: date-time
+        breachReport:
+          type: array
+          items:
+            $ref: '#/components/schemas/BreachReportItem'
+    ExchangeRateInformation:
+      type: object
+      properties:
+        currencyCode:
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: Currency in which the rate of exchange is expressed in a currency exchange.
+        rate:
+          maximum: 1.0e+18
+          minimum: -1.0e+18
+          type: string
+          description: The factor used for conversion of an amount from one currency to another.
+        rateType:
+          type: string
+          description: Specifies the type used to complete the currency exchange.
+          enum:
+          - ACTUAL
+          - INDICATIVE
+          - AGREED
+        contractIdentification:
+          maxLength: 256
+          type: string
+          description: Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.
+      description: The detailed information on the exchange rate that has been used in the payment transaction.
+    CounterpartyAccount:
+      required:
+      - identification
+      properties:
+        accountType:
+          maxLength: 10
+          type: string
+          description: The type of the account, e.g. for ACH we have CHECKING/SAVINGS
+        arrangementId:
+          maxLength: 36
+          minLength: 1
+          type: string
+          description: The unique arrangement id.
+        externalArrangementId:
+          maxLength: 70
+          minLength: 1
+          type: string
+          description: The external unique arrangement id.
+        identification:
+          $ref: '#/components/schemas/Identification'
+        name:
+          maxLength: 140
+          type: string
+          description: Default name field used in DBS
+      description: The counterparty Account is the original account identification plus the arrangement if applicable.
+    internal-server-error:
+      title: InternalServerError
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    Identification:
+      required:
+      - identification
+      - schemeName
+      type: object
+      properties:
+        identification:
+          maxLength: 36
+          type: string
+          description: The identifier of the account. Can be a regular account number, or an ID.
+        schemeName:
+          type: string
+          description: This describes the type of the account identifier. ID will mean it refers to an account known within DBS.
+          enum:
+          - IBAN
+          - BBAN
+          - ID
+          - EXTERNAL_ID
     OriginatorAccount:
       required:
       - arrangementId
@@ -293,21 +311,81 @@ components:
           type: string
           description: This is the name of the account, and not the name of the account holder.
       description: The product identification of the originator
-    TimeFrame:
+    BreachInfo:
       required:
-      - endTime
-      - period
-      - startTime
+      - breachType
+      - currentConsumption
+      - currentThreshold
       type: object
       properties:
-        period:
+        breachType:
           type: string
-        startTime:
+          enum:
+          - THRESHOLD
+          - CONSUMPTION
+        breachedLimitType:
           type: string
-          format: date-time
-        endTime:
+          enum:
+          - PERIODIC
+          - TRANSACTIONAL
+        timeframe:
+          $ref: '#/components/schemas/TimeFrame'
+        currentConsumption:
           type: string
-          format: date-time
+          description: The amount in the specified currency
+        currentThreshold:
+          type: string
+          description: The amount in the specified currency
+    BreachReportItem:
+      required:
+      - breachInfo
+      type: object
+      properties:
+        limitedEntity:
+          type: array
+          description: When not set, user-BBID must be set
+          items:
+            $ref: '#/components/schemas/EntityDescription'
+        shadow:
+          type: boolean
+          description: Shadow limit flag. Applicable for certain entity-types
+        currency:
+          type: string
+          description: Currency code
+        user-BBID:
+          type: string
+          description: BBID of the user for whom the personal limit is assigned
+        breachInfo:
+          type: array
+          description: List of breached periodic limits related to a particular limitable entity
+          items:
+            $ref: '#/components/schemas/BreachInfo'
+    Actions:
+      type: array
+      description: An array of actions that could be performed on a payment order. Actions that can be done are dependant on the payment itself.
+      items:
+        type: string
+        description: The actions that can be performed by the user (with the current context). This field is not evaluated when payment is requested by support employee on behalf of another user.
+        enum:
+        - APPROVE
+        - FINAL_APPROVE
+        - REJECT
+        - CANCEL
+        - DELETE
+    bad-request-error:
+      title: BadRequestError
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/error-item'
     error-item:
       title: ErrorItem
       type: object
@@ -344,8 +422,69 @@ components:
           additionalProperties:
             type: string
           description: Additional properties
-    Currency:
-      $ref: '#/components/schemas/currency'
+    PaymentOrdersPostResponse:
+      title: PaymentOrdersPostResponse
+      required:
+      - id
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          description: The internal DBS status of the payment order..
+          enum:
+          - DRAFT
+          - ENTERED
+          - READY
+          - ACCEPTED
+          - PROCESSED
+          - REJECTED
+          - CANCELLED
+          - CANCELLATION_PENDING
+          - CONFIRMATION_PENDING
+          - CONFIRMATION_DECLINED
+        bankStatus:
+          maxLength: 35
+          type: string
+          description: Internal status of the payment or batch order in the core banking system.
+        reasonCode:
+          maxLength: 4
+          type: string
+          description: Reason code the core banking system accepted/rejected the payment or batch.
+        reasonText:
+          maxLength: 35
+          type: string
+          description: Human readable reason the core banking system accepted/rejected the payment or batch.
+        errorDescription:
+          maxLength: 105
+          type: string
+          description: Additional information from the core banking system on why the payment was refused.
+        nextExecutionDate:
+          type: string
+          description: The execution date of the payment that the core system calculated.
+          format: date
+        paymentSetupId:
+          maxLength: 128
+          type: string
+          description: Generated when the PISP sets up the payments before the Backbase authorization flow.
+        paymentSubmissionId:
+          maxLength: 128
+          type: string
+          description: Generated when the PISP submits the payment which is after the Backbase authorization flow.
+        approvalStatus:
+          maxLength: 70
+          type: string
+          description: The status as returned by the approval service.
+        transferFee:
+          $ref: '#/components/schemas/Currency'
+        exchangeRateInformation:
+          $ref: '#/components/schemas/ExchangeRateInformation'
+        additions:
+          type: object
+          additionalProperties:
+            type: string
     IdentifiedPaymentOrder:
       required:
       - id
@@ -476,156 +615,50 @@ components:
           type: object
           additionalProperties:
             type: string
-    internal-server-error:
-      title: InternalServerError
-      type: object
-      properties:
-        message:
-          type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    BreachReportItem:
+    EntityDescription:
       required:
-      - breachInfo
+      - description
+      - ref
+      - type
       type: object
       properties:
-        limitedEntity:
-          type: array
-          description: When not set, user-BBID must be set
-          items:
-            $ref: '#/components/schemas/EntityDescription'
-        shadow:
-          type: boolean
-          description: Shadow limit flag. Applicable for certain entity-types
-        currency:
+        ref:
           type: string
-          description: Currency code
-        user-BBID:
+        type:
           type: string
-          description: BBID of the user for whom the personal limit is assigned
-        breachInfo:
-          type: array
-          description: List of breached periodic limits related to a particular limitable entity
-          items:
-            $ref: '#/components/schemas/BreachInfo'
-    Bank:
-      type: object
-      properties:
-        bankBranchCode:
-          maxLength: 11
+        description:
           type: string
-          description: Some code to identify a bank office, p.e. ABA routing transit number (9) or Swift BIC code (11)
-        name:
-          maxLength: 140
-          type: string
-          description: The name of a bank
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
-        bic:
-          pattern: ^([A-Z0-9]){4}([A-Z]){2}([A-Z0-9]){2}([A-Z0-9]{3})?$
-          type: string
-          description: Business identifier code as specified by ISO 9362:2014
-      description: This object is used to identify the counterparty or correspondent bank.
-    PaymentOrdersPostResponse:
-      title: PaymentOrdersPostResponse
+    PaymentOrderApprovalPutRequest:
+      title: ApprovalStatusPutRequest
       required:
-      - id
-      - status
+      - approvalStatus
       type: object
       properties:
-        id:
-          type: string
-        status:
-          type: string
-          description: The internal DBS status of the payment order..
-          enum:
-          - DRAFT
-          - ENTERED
-          - READY
-          - ACCEPTED
-          - PROCESSED
-          - REJECTED
-          - CANCELLED
-          - CANCELLATION_PENDING
-          - CONFIRMATION_PENDING
-          - CONFIRMATION_DECLINED
-        bankStatus:
-          maxLength: 35
-          type: string
-          description: Internal status of the payment or batch order in the core banking system.
-        reasonCode:
-          maxLength: 4
-          type: string
-          description: Reason code the core banking system accepted/rejected the payment or batch.
-        reasonText:
-          maxLength: 35
-          type: string
-          description: Human readable reason the core banking system accepted/rejected the payment or batch.
-        errorDescription:
-          maxLength: 105
-          type: string
-          description: Additional information from the core banking system on why the payment was refused.
-        nextExecutionDate:
-          type: string
-          description: The execution date of the payment that the core system calculated.
-          format: date
-        paymentSetupId:
-          maxLength: 128
-          type: string
-          description: Generated when the PISP sets up the payments before the Backbase authorization flow.
-        paymentSubmissionId:
-          maxLength: 128
-          type: string
-          description: Generated when the PISP submits the payment which is after the Backbase authorization flow.
         approvalStatus:
-          maxLength: 70
           type: string
-          description: The status as returned by the approval service.
-        transferFee:
-          $ref: '#/components/schemas/Currency'
-        exchangeRateInformation:
-          $ref: '#/components/schemas/ExchangeRateInformation'
-        additions:
-          type: object
-          additionalProperties:
-            type: string
-    InvolvedParty:
-      required:
-      - name
-      type: object
-      properties:
-        name:
+          description: The options for approval.
+          enum:
+          - APPROVED
+          - REJECTED
+        comment:
           maxLength: 140
           type: string
-        role:
-          type: string
-          description: These are the possible values the role of an involved party can  have.
-          enum:
-          - CREDITOR
-          - DEBTOR
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
-        recipientId:
-          maxLength: 15
-          type: string
-          description: Used for ACH Credit to indicate the id of the recipient
-      description: This object is a common denominator for the debtor or creditor party.
-    BreachReportError:
+          description: When approving or rejecting, the user can add comments which would explain the reason for the action.
+    TimeFrame:
       required:
-      - message
+      - endTime
+      - period
+      - startTime
       type: object
       properties:
-        message:
+        period:
           type: string
-        payment:
-          $ref: '#/components/schemas/IdentifiedPaymentOrder'
-        checkTime:
+        startTime:
           type: string
           format: date-time
-        breachReport:
-          type: array
-          items:
-            $ref: '#/components/schemas/BreachReportItem'
+        endTime:
+          type: string
+          format: date-time
     Schedule:
       required:
       - every
@@ -680,102 +713,60 @@ components:
           description: Date when the next payment will be executed, taking in consideration bank holidays and cut-off times. It will be only retrieved when getting payments, it will be dismissed when creating or updating.
           format: date
       description: Schedule for recurring transfer. Mandatory if paymentMode is RECURRING
-    ExchangeRateInformation:
+    IdentifiedTransaction:
+      required:
+      - counterparty
+      - counterpartyAccount
+      - instructedAmount
       type: object
       properties:
-        currencyCode:
+        counterparty:
+          $ref: '#/components/schemas/InvolvedParty'
+        counterpartyAccount:
+          $ref: '#/components/schemas/CounterpartyAccount'
+        counterpartyBank:
+          $ref: '#/components/schemas/Bank'
+        instructedAmount:
+          $ref: '#/components/schemas/Currency'
+        correspondentBank:
+          $ref: '#/components/schemas/Bank'
+        intermediaryBank:
+          $ref: '#/components/schemas/Bank'
+        messageToBank:
+          maxLength: 140
+          type: string
+          description: The message to the bank used for US domestic wire payments
+        targetCurrency:
           pattern: ^[A-Z]{3}$
           type: string
-          description: Currency in which the rate of exchange is expressed in a currency exchange.
-        rate:
-          maximum: 1.0e+18
-          minimum: -1.0e+18
+          description: The alpha-3 code (complying with ISO 4217) of the currency
+        remittanceInformation:
+          $ref: '#/components/schemas/RemittanceInformation'
+        endToEndIdentification:
+          maxLength: 35
           type: string
-          description: The factor used for conversion of an amount from one currency to another.
-        rateType:
+        mandateIdentifier:
+          maxLength: 15
           type: string
-          description: Specifies the type used to complete the currency exchange.
+          description: The mandate identifier, of the counter party, giving permission for the debit order.
+        chargeBearer:
+          type: string
+          description: 'Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).'
           enum:
-          - ACTUAL
-          - INDICATIVE
-          - AGREED
-        contractIdentification:
-          maxLength: 256
-          type: string
-          description: Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.
-      description: The detailed information on the exchange rate that has been used in the payment transaction.
-    EntityDescription:
-      required:
-      - description
-      - ref
-      - type
-      type: object
-      properties:
-        ref:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-    Actions:
-      type: array
-      description: An array of actions that could be performed on a payment order. Actions that can be done are dependant on the payment itself.
-      items:
-        type: string
-        description: The actions that can be performed by the user (with the current context). This field is not evaluated when payment is requested by support employee on behalf of another user.
-        enum:
-        - APPROVE
-        - FINAL_APPROVE
-        - REJECT
-        - CANCEL
-        - DELETE
-    Identification:
-      required:
-      - identification
-      - schemeName
-      type: object
-      properties:
-        identification:
-          maxLength: 36
-          type: string
-          description: The identifier of the account. Can be a regular account number, or an ID.
-        schemeName:
-          type: string
-          description: This describes the type of the account identifier. ID will mean it refers to an account known within DBS.
-          enum:
-          - IBAN
-          - BBAN
-          - ID
-          - EXTERNAL_ID
-    bad-request-error:
-      title: BadRequestError
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/error-item'
+          - OUR
+          - BEN
+          - SHA
+        transferFee:
+          $ref: '#/components/schemas/Currency'
+        exchangeRateInformation:
+          $ref: '#/components/schemas/ExchangeRateInformation'
+      description: The object defining the identified transaction, which means the counterparty will have a arrangementId where applicable.
   examples:
-    lib-bad-request-validation-error:
-      summary: lib-bad-request-validation-error
+    simple-1:
+      summary: simple-1
       value:
-        message: Bad Request
-        errors:
-        - message: Value Exceeded. Must be between {min} and {max}.
-          key: common.api.shoesize
-          context:
-            max: '50'
-            min: '1'
-    payment-orders-approval-payment-order-approval-put-request:
-      summary: payment-orders-approval-payment-order-approval-put-request
-      value:
-        approvalStatus: APPROVED
+        id: af2599ef-759a-4b78-8e67-4949055a532b
+        status: ENTERED
     error-breach-report-error:
       summary: error-breach-report-error
       value:
@@ -881,18 +872,27 @@ components:
               endTime: 2017-03-31 23:59:59+00:00
             currentConsumption: '99950.0'
             currentThreshold: '100000.0'
-    lib-internal-server-error:
-      summary: lib-internal-server-error
+    payment-orders-approval-payment-order-approval-put-request:
+      summary: payment-orders-approval-payment-order-approval-put-request
       value:
-        message: Description of error
-    simple-1:
-      summary: simple-1
-      value:
-        id: af2599ef-759a-4b78-8e67-4949055a532b
-        status: ENTERED
+        approvalStatus: APPROVED
     approved-1:
       summary: approved-1
       value:
         id: af2599ef-759a-4b78-8e67-4949055a532b
         status: ENTERED
         approvalStatus: APPROVED
+    lib-bad-request-validation-error:
+      summary: lib-bad-request-validation-error
+      value:
+        message: Bad Request
+        errors:
+        - message: Value Exceeded. Must be between {min} and {max}.
+          key: common.api.shoesize
+          context:
+            max: '50'
+            min: '1'
+    lib-internal-server-error:
+      summary: lib-internal-server-error
+      value:
+        message: Description of error

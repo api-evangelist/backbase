@@ -2,7 +2,7 @@
   "provider": "backbase",
   "sources": [
     "_original/backbase-openapi-openapi.yml",
-    "payment-order-client-api-v2.0.0.yaml"
+    "_original/payment-order-client-api-v2.0.0.yaml"
   ],
   "outputs": [
     "backbase-bbt-api-openapi.yml",
@@ -14,20 +14,27 @@
     "backbase-utility-api-openapi.yml",
     "backbase-validate-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/payment-order-client-api-v2.0.0.yaml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "backbase-openapi-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
     "backbase-openapi-openapi.yml: declared missing tag: bbt",
     "backbase-openapi-openapi.yml: declared missing tag: patch",
     "backbase-openapi-openapi.yml: declared missing tag: test",
     "backbase-openapi-openapi.yml: declared missing tag: wallet",
     "payment-order-client-api-v2.0.0.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: written (+8 apis, 8 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "backbase-approve-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-bbt-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-patch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-payment-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-test-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-utility-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-validate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "backbase-wallet-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

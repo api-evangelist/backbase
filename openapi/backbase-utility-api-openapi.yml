@@ -104,6 +104,72 @@ paths:
       summary: Get rate
       x-summary-source: derived
 components:
+  schemas:
+    currencies-get-response-body:
+      title: Currency
+      required:
+      - code
+      type: object
+      properties:
+        code:
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: The alpha-3 code (complying with ISO 4217) of the currency
+      description: Currency
+    bad-request-error:
+      title: BadRequestError
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/error-item'
+    internal-server-error:
+      title: InternalServerError
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    RateGet:
+      title: RateGet
+      required:
+      - rate
+      type: object
+      properties:
+        rate:
+          type: number
+          description: Rate for given currencies
+    error-item:
+      title: ErrorItem
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          additionalProperties:
+            type: string
+          description: Context can be anything used to construct localised messages.
+    CurrenciesGet:
+      title: CurrenciesGet
+      type: array
+      description: Currencies available for payment response
+      items:
+        $ref: '#/components/schemas/CurrenciesGetResponseBody'
+    CurrenciesGetResponseBody:
+      $ref: '#/components/schemas/currencies-get-response-body'
   examples:
     lib-bad-request-validation-error:
       summary: lib-bad-request-validation-error
@@ -123,77 +189,11 @@ components:
       - code: GBP
       - code: ISK
       - code: KWD
-    lib-internal-server-error:
-      summary: lib-internal-server-error
-      value:
-        message: Description of error
     payment-orders-rate-get-response:
       summary: payment-orders-rate-get-response
       value:
         rate: 1.07
-  schemas:
-    CurrenciesGetResponseBody:
-      $ref: '#/components/schemas/currencies-get-response-body'
-    RateGet:
-      title: RateGet
-      required:
-      - rate
-      type: object
-      properties:
-        rate:
-          type: number
-          description: Rate for given currencies
-    CurrenciesGet:
-      title: CurrenciesGet
-      type: array
-      description: Currencies available for payment response
-      items:
-        $ref: '#/components/schemas/CurrenciesGetResponseBody'
-    currencies-get-response-body:
-      title: Currency
-      required:
-      - code
-      type: object
-      properties:
-        code:
-          pattern: ^[A-Z]{3}$
-          type: string
-          description: The alpha-3 code (complying with ISO 4217) of the currency
-      description: Currency
-    internal-server-error:
-      title: InternalServerError
-      type: object
-      properties:
-        message:
-          type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    bad-request-error:
-      title: BadRequestError
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/error-item'
-    error-item:
-      title: ErrorItem
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information.
-        key:
-          type: string
-          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
-        context:
-          type: object
-          additionalProperties:
-            type: string
-          description: Context can be anything used to construct localised messages.
+    lib-internal-server-error:
+      summary: lib-internal-server-error
+      value:
+        message: Description of error

@@ -88,61 +88,6 @@ paths:
                   value: "{\n  \"message\" : \"Access to requested resource denied.\",\n  \"errors\" : [ {\n    \"message\" : \"Resource access denied due to invalid credentials.\",\n    \"key\" : \"common.api.token\",\n    \"context\" : {\n      \"accessToken\" : \"expired\"\n    }\n  } ]\n}"
 components:
   schemas:
-    ForbiddenError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    NotFoundError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    InternalServerError:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    UnsupportedMediaTypeError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    BadRequestError:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
     UnauthorizedAltError:
       type: object
       properties:
@@ -167,3 +112,58 @@ components:
           type: object
           description: Context can be anything used to construct localised messages.
       description: A validation error
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    NotFoundError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    BadRequestError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
