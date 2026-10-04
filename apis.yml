@@ -14,6 +14,12 @@ created: '2026-09-27'
 modified: '2026-09-27'
 tags:
 - Banking
+- Fintech
+- Digital Banking
+- API Platform
+- AI-Native
+tags_raw:
+- Banking
 - FinTech
 - Digital Banking
 - API Platform
@@ -146,7 +152,8 @@ apis:
   description: The patch API from BackBase — 1 operation(s) for patch.
   humanURL: https://www.backbase.com/insight/guides
   baseURL: https://api.backbase.com
-  tags:
+  tags: []
+  tags_raw:
   - patch
   properties:
   - type: OpenAPI
@@ -181,6 +188,8 @@ apis:
   humanURL: https://www.backbase.com/insight/guides
   baseURL: https://api.backbase.com
   tags:
+  - Payment Orders
+  tags_raw:
   - payment-orders
   properties:
   - type: OpenAPI
@@ -214,7 +223,8 @@ apis:
   description: The test API from BackBase — 4 operation(s) for test.
   humanURL: https://www.backbase.com/insight/guides
   baseURL: https://api.backbase.com
-  tags:
+  tags: []
+  tags_raw:
   - test
   properties:
   - type: OpenAPI
@@ -249,6 +259,8 @@ apis:
   humanURL: https://www.backbase.com/insight/guides
   baseURL: https://api.backbase.com
   tags:
+  - Utility
+  tags_raw:
   - utility
   properties:
   - type: OpenAPI
@@ -283,6 +295,8 @@ apis:
   humanURL: https://www.backbase.com/insight/guides
   baseURL: https://api.backbase.com
   tags:
+  - Validate
+  tags_raw:
   - validate
   properties:
   - type: OpenAPI
@@ -317,6 +331,8 @@ apis:
   humanURL: https://www.backbase.com/insight/guides
   baseURL: https://api.backbase.com
   tags:
+  - Wallets
+  tags_raw:
   - wallet
   properties:
   - type: OpenAPI
