@@ -428,6 +428,69 @@ paths:
       x-BbAccessControl-privilege: DELETE_PAYMENT_CARD
 components:
   schemas:
+    NotAcceptableError:
+      type: object
+      properties:
+        message:
+          type: string
+        supportedMediaTypes:
+          type: array
+          description: List of supported media types for this endpoint
+          items:
+            type: string
+    UnauthorizedAltError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    PaymentCards:
+      type: array
+      items:
+        $ref: '#/components/schemas/PaymentCard'
+    PaymentCardsPostResponseBody:
+      type: object
+      properties:
+        id:
+          type: string
+      example:
+        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
     PaymentCard:
       required:
       - cvc
@@ -472,7 +535,7 @@ components:
           - CREDIT
           - DEBIT
           - PREPAID
-    UnauthorizedAltError:
+    NotFoundError:
       type: object
       properties:
         message:
@@ -511,62 +574,6 @@ components:
           type: string
           description: The alpha-3 code (complying with ISO 4217) of the currency that qualifies the amount
       description: Schema defining monetary amount in given currency.
-    ForbiddenError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    UnsupportedMediaTypeError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    InternalServerError:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    PaymentCards:
-      type: array
-      items:
-        $ref: '#/components/schemas/PaymentCard'
-    NotAcceptableError:
-      type: object
-      properties:
-        message:
-          type: string
-        supportedMediaTypes:
-          type: array
-          description: List of supported media types for this endpoint
-          items:
-            type: string
-    NotFoundError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
     BadRequestError:
       required:
       - message
@@ -580,10 +587,3 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/ErrorItem'
-    PaymentCardsPostResponseBody:
-      type: object
-      properties:
-        id:
-          type: string
-      example:
-        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1

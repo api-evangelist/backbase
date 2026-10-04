@@ -69,238 +69,182 @@ paths:
       x-BbAccessControl-function: Product Summary
       x-BbAccessControl-privilege: view
 components:
-  examples:
-    final-approver:
-      summary: final-approver
-      value:
-        originatorAccount:
-          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
-          externalArrangementId: '729190421493794513132'
-          identification:
-            identification: NL53RABO0309349755
-            schemeName: IBAN
-        originator:
-          name: Credit Account
-          postalAddress:
-            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-        instructionPriority: NORM
-        requestedExecutionDate: 2017-07-16
-        paymentType: SEPA_CREDIT_TRANSFER
-        isIntraLegalEntityPaymentOrder: false
-        canApprove: true
-        finalApprover: true
-        transferTransactionInformation:
-          instructedAmount:
-            amount: '5000.55'
-            currencyCode: EUR
-          counterpartyAccount:
-            identification:
-              identification: FR708933019952AUNHQNQ0KZ
-              schemeName: IBAN
-            name: ABN Amro
-          counterparty:
-            name: Backbase
-            postalAddress:
-              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-              country: NL
-          remittanceInformation:
-            type: UNSTRUCTURED
-            content: Return a debt
-    default:
-      summary: default
-      value:
-        originatorAccount:
-          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
-          externalArrangementId: '729190421493794513132'
-          identification:
-            identification: NL53RABO0309349755
-            schemeName: IBAN
-        originator:
-          name: Credit Account
-          postalAddress:
-            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-        instructionPriority: NORM
-        requestedExecutionDate: 2017-07-16
-        paymentType: SEPA_CREDIT_TRANSFER
-        isIntraLegalEntityPaymentOrder: false
-        canApprove: false
-        finalApprover: false
-        transferTransactionInformation:
-          instructedAmount:
-            amount: '5000.55'
-            currencyCode: EUR
-          counterpartyAccount:
-            identification:
-              identification: FR708933019952AUNHQNQ0KZ
-              schemeName: IBAN
-            name: ABN Amro
-          counterparty:
-            name: Backbase
-            postalAddress:
-              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-              country: NL
-          remittanceInformation:
-            type: UNSTRUCTURED
-            content: Return a debt
-    can-approve:
-      summary: can-approve
-      value:
-        originatorAccount:
-          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
-          externalArrangementId: '729190421493794513132'
-          identification:
-            identification: NL53RABO0309349755
-            schemeName: IBAN
-        originator:
-          name: Credit Account
-          postalAddress:
-            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-        instructionPriority: NORM
-        requestedExecutionDate: 2017-07-16
-        paymentType: SEPA_CREDIT_TRANSFER
-        isIntraLegalEntityPaymentOrder: false
-        canApprove: true
-        finalApprover: false
-        transferTransactionInformation:
-          instructedAmount:
-            amount: '5000.55'
-            currencyCode: EUR
-          counterpartyAccount:
-            identification:
-              identification: FR708933019952AUNHQNQ0KZ
-              schemeName: IBAN
-            name: ABN Amro
-          counterparty:
-            name: Backbase
-            postalAddress:
-              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-              country: NL
-          remittanceInformation:
-            type: UNSTRUCTURED
-            content: Return a debt
-    simple:
-      summary: simple
-      value:
-        originatorAccount:
-          identification:
-            identification: 729190df-a421-4937-94fd-5e1a3da132cc
-            schemeName: ID
-        requestedExecutionDate: 2017-08-11
-        paymentType: SEPA_CREDIT_TRANSFER
-        transferTransactionInformation:
-          instructedAmount:
-            amount: '100.00'
-            currencyCode: EUR
-          counterparty:
-            name: J. Sparrow
-          counterpartyAccount:
-            identification:
-              identification: NL21ABNA0136371124
-              schemeName: IBAN
-            selectedContact:
-              contactId: 14b0b245-c7a9-427e-8e77-26c2f98dfa3d
-              accountId: 61425aed-5d5c-4292-8f60-e2f3efc9b66a
-    intra-legal-entity:
-      summary: intra-legal-entity
-      value:
-        originatorAccount:
-          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
-          externalArrangementId: '729190421493794513132'
-          identification:
-            identification: NL53RABO0309349755
-            schemeName: IBAN
-        originator:
-          name: Credit Account
-          postalAddress:
-            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-        instructionPriority: NORM
-        requestedExecutionDate: 2017-07-16
-        paymentType: SEPA_CT_ILE
-        isIntraLegalEntityPaymentOrder: true
-        canApprove: false
-        finalApprover: false
-        transferTransactionInformation:
-          instructedAmount:
-            amount: '5000.55'
-            currencyCode: EUR
-          counterpartyAccount:
-            identification:
-              identification: FR708933019952AUNHQNQ0KZ
-              schemeName: IBAN
-            name: ABN Amro
-          counterparty:
-            name: Backbase
-            postalAddress:
-              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
-              country: NL
-          remittanceInformation:
-            type: UNSTRUCTURED
-            content: Return a debt
-    lib-bad-request-validation-error:
-      summary: lib-bad-request-validation-error
-      value:
-        message: Bad Request
-        errors:
-        - message: Value Exceeded. Must be between {min} and {max}.
-          key: common.api.shoesize
-          context:
-            max: '50'
-            min: '1'
-    complex:
-      summary: complex
-      value:
-        originatorAccount:
-          identification:
-            identification: 729190df-a421-4937-94fd-5e1a3da132cc
-            schemeName: ID
-        batchBooking: true
-        instructionPriority: NORM
-        requestedExecutionDate: 2018-01-01
-        paymentMode: RECURRING
-        paymentType: SEPA_CREDIT_TRANSFER
-        schedule:
-          nonWorkingDayExecutionStrategy: AFTER
-          transferFrequency: MONTHLY
-          'on': 1
-          startDate: 2018-01-01
-          repeat: 2
-          every: 1
-        transferTransactionInformation:
-          instructedAmount:
-            amount: '100.00'
-            currencyCode: EUR
-          counterparty:
-            name: Dagobert Duck
-            postalAddress:
-              addressLine1: Some other street
-              addressLine2: '99'
-              postCode: 1100 ZZ
-              town: Amsterdam
-              country: NL
-          counterpartyAccount:
-            identification:
-              identification: fe9d66ae-b927-4ac7-8799-c5a38a596ff2
-              schemeName: ID
-          remittanceInformation: Salary
-          endToEndIdentification: 5e1a3da132cc
-    lib-internal-server-error:
-      summary: lib-internal-server-error
-      value:
-        message: Description of error
   schemas:
-    InitiateCounterpartyAccount:
+    Schedule:
+      required:
+      - every
+      - 'on'
+      - startDate
+      - transferFrequency
       type: object
       properties:
-        accountType:
-          maxLength: 10
+        nonWorkingDayExecutionStrategy:
           type: string
-          description: The type of the account, e.g. for ACH we have CHECKING/SAVINGS
-        selectedContact:
-          $ref: '#/components/schemas/SelectedContactDto'
-      description: The counterparty Account is the original account identification plus the type of account if applicable. It also holds the details of the selected contact, if any.
-      allOf:
-      - $ref: '#/components/schemas/AccountIdentification'
-      - type: object
+          description: Strategy for executing payments on non-working days
+          enum:
+          - BEFORE
+          - AFTER
+          - NONE
+        transferFrequency:
+          type: string
+          description: Denotes how frequently the transfer should be made
+          enum:
+          - ONCE
+          - DAILY
+          - WEEKLY
+          - BIWEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+        'on':
+          type: integer
+          description: Denotes day on which transfer should be executed. For WEEKLY transferFrequency it will be 1..7 indicating weekday. For BIWEEKLY it will be 1..14 indicating the day of the two week period. For MONTHLY it will be 1..31 indicating day of month. For YEARLY it will be 1..12 indicating month of the year.
+          format: int32
+        startDate:
+          type: string
+          description: When to start executing the schedule. First transfer will be executed on first calculated date by schedule after this date.
+          format: date
+        endDate:
+          type: string
+          description: When to stop transfers. Transfers will not be executed after this date. Only one of endDate and repeat is possible. If neither repeat nor endDate is provided transfer will be executed until canceled
+          format: date
+        repeat:
+          type: integer
+          description: Number of transfer to be executed. Only one of endDate and repeat is possible. If neither repeat nor endDate is provided transfer will be executed until canceled
+          format: int32
+        every:
+          type: integer
+          description: Indicates skip interval of transfer. 1 would mean execute every time, 2 - every other time
+          format: int32
+          enum:
+          - 1
+          - 2
+        nextExecutionDate:
+          type: string
+          description: Date when the next payment will be executed, taking in consideration bank holidays and cut-off times. It will be only retrieved when getting payments, it will be dismissed when creating or updating.
+          format: date
+      description: Schedule for recurring transfer. Mandatory if paymentMode is RECURRING
+    AccountIdentification:
+      required:
+      - identification
+      type: object
+      properties:
+        identification:
+          $ref: '#/components/schemas/Identification'
+        name:
+          maxLength: 140
+          type: string
+          description: This is the name of the account, and not the name of the account holder.
+    SelectedContactDto:
+      type: object
+      properties:
+        contactId:
+          type: string
+          description: The id of the selected contact.
+        accountId:
+          type: string
+          description: The id of the selected account.
+      description: Holds the contact and account id when an account from a contact was selected while creating a payment. This information is not persisted in DBS but can be used in service extensions to enrich details from the selected contact and store it in the additional properties of the payment order.
+    IdentifiedTransaction:
+      required:
+      - counterparty
+      - counterpartyAccount
+      - instructedAmount
+      type: object
+      properties:
+        counterparty:
+          $ref: '#/components/schemas/InvolvedParty'
+        counterpartyAccount:
+          $ref: '#/components/schemas/CounterpartyAccount'
+        counterpartyBank:
+          $ref: '#/components/schemas/Bank'
+        instructedAmount:
+          $ref: '#/components/schemas/Currency'
+        correspondentBank:
+          $ref: '#/components/schemas/Bank'
+        intermediaryBank:
+          $ref: '#/components/schemas/Bank'
+        messageToBank:
+          maxLength: 140
+          type: string
+          description: The message to the bank used for US domestic wire payments
+        targetCurrency:
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: The alpha-3 code (complying with ISO 4217) of the currency
+        remittanceInformation:
+          $ref: '#/components/schemas/RemittanceInformation'
+        endToEndIdentification:
+          maxLength: 35
+          type: string
+        mandateIdentifier:
+          maxLength: 15
+          type: string
+          description: The mandate identifier, of the counter party, giving permission for the debit order.
+        chargeBearer:
+          type: string
+          description: 'Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).'
+          enum:
+          - OUR
+          - BEN
+          - SHA
+        transferFee:
+          $ref: '#/components/schemas/Currency'
+        exchangeRateInformation:
+          $ref: '#/components/schemas/ExchangeRateInformation'
+      description: The object defining the identified transaction, which means the counterparty will have a arrangementId where applicable.
+    InitiateTransaction:
+      required:
+      - counterparty
+      - counterpartyAccount
+      - instructedAmount
+      type: object
+      properties:
+        counterparty:
+          $ref: '#/components/schemas/InvolvedParty'
+        counterpartyAccount:
+          $ref: '#/components/schemas/InitiateCounterpartyAccount'
+        counterpartyBank:
+          $ref: '#/components/schemas/Bank'
+        instructedAmount:
+          $ref: '#/components/schemas/Currency'
+        correspondentBank:
+          $ref: '#/components/schemas/Bank'
+        intermediaryBank:
+          $ref: '#/components/schemas/Bank'
+        messageToBank:
+          maxLength: 140
+          type: string
+          description: The message to the bank used for US domestic wire payments
+        targetCurrency:
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: The alpha-3 code (complying with ISO 4217) of the currency
+        remittanceInformation:
+          maxLength: 140
+          type: string
+          description: The remittance info for manually initiated credit transfers. Does not have a type since it will always default to UNSTRUCTURED.
+        endToEndIdentification:
+          maxLength: 35
+          type: string
+        mandateIdentifier:
+          maxLength: 15
+          type: string
+          description: The mandate identifier, of the counter party, giving permission for the debit order.
+        chargeBearer:
+          type: string
+          description: 'Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).'
+          enum:
+          - OUR
+          - BEN
+          - SHA
+        transferFee:
+          $ref: '#/components/schemas/Currency'
+        additions:
+          type: object
+          additionalProperties:
+            type: object
+      description: The object defining the transaction to be initiated.
     PaymentOrdersValidatePost:
       title: InitiatePaymentOrder
       required:
@@ -346,46 +290,43 @@ components:
         approved:
           type: boolean
           description: When set to true, the submitted payment order will also be approved by the user.
-    Currency:
-      $ref: '#/components/schemas/currency'
-    InvolvedParty:
-      required:
-      - name
+    ExchangeRateInformation:
       type: object
       properties:
-        name:
-          maxLength: 140
+        currencyCode:
+          pattern: ^[A-Z]{3}$
           type: string
-        role:
+          description: Currency in which the rate of exchange is expressed in a currency exchange.
+        rate:
+          maximum: 1.0e+18
+          minimum: -1.0e+18
           type: string
-          description: These are the possible values the role of an involved party can  have.
+          description: The factor used for conversion of an amount from one currency to another.
+        rateType:
+          type: string
+          description: Specifies the type used to complete the currency exchange.
           enum:
-          - CREDITOR
-          - DEBTOR
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
-        recipientId:
-          maxLength: 15
+          - ACTUAL
+          - INDICATIVE
+          - AGREED
+        contractIdentification:
+          maxLength: 256
           type: string
-          description: Used for ACH Credit to indicate the id of the recipient
-      description: This object is a common denominator for the debtor or creditor party.
-    RemittanceInformation:
-      required:
-      - content
-      - type
+          description: Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.
+      description: The detailed information on the exchange rate that has been used in the payment transaction.
+    InitiateCounterpartyAccount:
       type: object
       properties:
-        type:
+        accountType:
+          maxLength: 10
           type: string
-          description: When type is structured it consists of some XML tags used when the transaction was uploaded.
-          enum:
-          - STRUCTURED
-          - UNSTRUCTURED
-        content:
-          maxLength: 140
-          type: string
-          description: The content of the remittance information.
-      description: This is the object representation of the remittance info and can contain different types of remittance info. It is only used in responses, not for input requests!
+          description: The type of the account, e.g. for ACH we have CHECKING/SAVINGS
+        selectedContact:
+          $ref: '#/components/schemas/SelectedContactDto'
+      description: The counterparty Account is the original account identification plus the type of account if applicable. It also holds the details of the selected contact, if any.
+      allOf:
+      - $ref: '#/components/schemas/AccountIdentification'
+      - type: object
     PostalAddress:
       type: object
       properties:
@@ -411,83 +352,6 @@ components:
           maxLength: 2
           type: string
       description: Postal address object with fields
-    Bank:
-      type: object
-      properties:
-        bankBranchCode:
-          maxLength: 11
-          type: string
-          description: Some code to identify a bank office, p.e. ABA routing transit number (9) or Swift BIC code (11)
-        name:
-          maxLength: 140
-          type: string
-          description: The name of a bank
-        postalAddress:
-          $ref: '#/components/schemas/PostalAddress'
-        bic:
-          pattern: ^([A-Z0-9]){4}([A-Z]){2}([A-Z0-9]){2}([A-Z0-9]{3})?$
-          type: string
-          description: Business identifier code as specified by ISO 9362:2014
-      description: This object is used to identify the counterparty or correspondent bank.
-    SelectedContactDto:
-      type: object
-      properties:
-        contactId:
-          type: string
-          description: The id of the selected contact.
-        accountId:
-          type: string
-          description: The id of the selected account.
-      description: Holds the contact and account id when an account from a contact was selected while creating a payment. This information is not persisted in DBS but can be used in service extensions to enrich details from the selected contact and store it in the additional properties of the payment order.
-    ExchangeRateInformation:
-      type: object
-      properties:
-        currencyCode:
-          pattern: ^[A-Z]{3}$
-          type: string
-          description: Currency in which the rate of exchange is expressed in a currency exchange.
-        rate:
-          maximum: 1.0e+18
-          minimum: -1.0e+18
-          type: string
-          description: The factor used for conversion of an amount from one currency to another.
-        rateType:
-          type: string
-          description: Specifies the type used to complete the currency exchange.
-          enum:
-          - ACTUAL
-          - INDICATIVE
-          - AGREED
-        contractIdentification:
-          maxLength: 256
-          type: string
-          description: Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.
-      description: The detailed information on the exchange rate that has been used in the payment transaction.
-    CounterpartyAccount:
-      required:
-      - identification
-      properties:
-        accountType:
-          maxLength: 10
-          type: string
-          description: The type of the account, e.g. for ACH we have CHECKING/SAVINGS
-        arrangementId:
-          maxLength: 36
-          minLength: 1
-          type: string
-          description: The unique arrangement id.
-        externalArrangementId:
-          maxLength: 70
-          minLength: 1
-          type: string
-          description: The external unique arrangement id.
-        identification:
-          $ref: '#/components/schemas/Identification'
-        name:
-          maxLength: 140
-          type: string
-          description: Default name field used in DBS
-      description: The counterparty Account is the original account identification plus the arrangement if applicable.
     internal-server-error:
       title: InternalServerError
       type: object
@@ -496,107 +360,6 @@ components:
           type: string
           description: Further Information
       description: Represents HTTP 500 Internal Server Error
-    Identification:
-      required:
-      - identification
-      - schemeName
-      type: object
-      properties:
-        identification:
-          maxLength: 36
-          type: string
-          description: The identifier of the account. Can be a regular account number, or an ID.
-        schemeName:
-          type: string
-          description: This describes the type of the account identifier. ID will mean it refers to an account known within DBS.
-          enum:
-          - IBAN
-          - BBAN
-          - ID
-          - EXTERNAL_ID
-    OriginatorAccount:
-      required:
-      - arrangementId
-      - identification
-      properties:
-        arrangementId:
-          maxLength: 36
-          minLength: 1
-          type: string
-          description: The unique arrangement id.
-        externalArrangementId:
-          maxLength: 70
-          minLength: 1
-          type: string
-          description: The external unique arrangement id.
-        identification:
-          $ref: '#/components/schemas/Identification'
-        name:
-          maxLength: 140
-          type: string
-          description: This is the name of the account, and not the name of the account holder.
-      description: The product identification of the originator
-    bad-request-error:
-      title: BadRequestError
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/error-item'
-    error-item:
-      title: ErrorItem
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information.
-        key:
-          type: string
-          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
-        context:
-          type: object
-          additionalProperties:
-            type: string
-          description: Context can be anything used to construct localised messages.
-    AccountIdentification:
-      required:
-      - identification
-      type: object
-      properties:
-        identification:
-          $ref: '#/components/schemas/Identification'
-        name:
-          maxLength: 140
-          type: string
-          description: This is the name of the account, and not the name of the account holder.
-    currency:
-      title: Currency
-      required:
-      - amount
-      - currencyCode
-      type: object
-      properties:
-        amount:
-          maximum: 1.0e+18
-          minimum: -1.0e+18
-          type: string
-          description: The amount in the specified currency
-        currencyCode:
-          pattern: ^[A-Z]{3}$
-          type: string
-          description: The alpha-3 code (complying with ISO 4217) of the currency that qualifies the amount
-        additions:
-          type: object
-          additionalProperties:
-            type: string
-          description: Additional properties
     PaymentOrdersValidatePostResponse:
       title: PaymentOrdersValidatePostResponse
       required:
@@ -664,157 +427,394 @@ components:
           type: object
           additionalProperties:
             type: string
-    InitiateTransaction:
+    OriginatorAccount:
       required:
-      - counterparty
-      - counterpartyAccount
-      - instructedAmount
+      - arrangementId
+      - identification
+      properties:
+        arrangementId:
+          maxLength: 36
+          minLength: 1
+          type: string
+          description: The unique arrangement id.
+        externalArrangementId:
+          maxLength: 70
+          minLength: 1
+          type: string
+          description: The external unique arrangement id.
+        identification:
+          $ref: '#/components/schemas/Identification'
+        name:
+          maxLength: 140
+          type: string
+          description: This is the name of the account, and not the name of the account holder.
+      description: The product identification of the originator
+    error-item:
+      title: ErrorItem
       type: object
       properties:
-        counterparty:
-          $ref: '#/components/schemas/InvolvedParty'
-        counterpartyAccount:
-          $ref: '#/components/schemas/InitiateCounterpartyAccount'
-        counterpartyBank:
-          $ref: '#/components/schemas/Bank'
-        instructedAmount:
-          $ref: '#/components/schemas/Currency'
-        correspondentBank:
-          $ref: '#/components/schemas/Bank'
-        intermediaryBank:
-          $ref: '#/components/schemas/Bank'
-        messageToBank:
+        message:
+          type: string
+          description: Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          additionalProperties:
+            type: string
+          description: Context can be anything used to construct localised messages.
+    Identification:
+      required:
+      - identification
+      - schemeName
+      type: object
+      properties:
+        identification:
+          maxLength: 36
+          type: string
+          description: The identifier of the account. Can be a regular account number, or an ID.
+        schemeName:
+          type: string
+          description: This describes the type of the account identifier. ID will mean it refers to an account known within DBS.
+          enum:
+          - IBAN
+          - BBAN
+          - ID
+          - EXTERNAL_ID
+    CounterpartyAccount:
+      required:
+      - identification
+      properties:
+        accountType:
+          maxLength: 10
+          type: string
+          description: The type of the account, e.g. for ACH we have CHECKING/SAVINGS
+        arrangementId:
+          maxLength: 36
+          minLength: 1
+          type: string
+          description: The unique arrangement id.
+        externalArrangementId:
+          maxLength: 70
+          minLength: 1
+          type: string
+          description: The external unique arrangement id.
+        identification:
+          $ref: '#/components/schemas/Identification'
+        name:
           maxLength: 140
           type: string
-          description: The message to the bank used for US domestic wire payments
-        targetCurrency:
+          description: Default name field used in DBS
+      description: The counterparty Account is the original account identification plus the arrangement if applicable.
+    currency:
+      title: Currency
+      required:
+      - amount
+      - currencyCode
+      type: object
+      properties:
+        amount:
+          maximum: 1.0e+18
+          minimum: -1.0e+18
+          type: string
+          description: The amount in the specified currency
+        currencyCode:
           pattern: ^[A-Z]{3}$
           type: string
-          description: The alpha-3 code (complying with ISO 4217) of the currency
-        remittanceInformation:
-          maxLength: 140
-          type: string
-          description: The remittance info for manually initiated credit transfers. Does not have a type since it will always default to UNSTRUCTURED.
-        endToEndIdentification:
-          maxLength: 35
-          type: string
-        mandateIdentifier:
-          maxLength: 15
-          type: string
-          description: The mandate identifier, of the counter party, giving permission for the debit order.
-        chargeBearer:
-          type: string
-          description: 'Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).'
-          enum:
-          - OUR
-          - BEN
-          - SHA
-        transferFee:
-          $ref: '#/components/schemas/Currency'
+          description: The alpha-3 code (complying with ISO 4217) of the currency that qualifies the amount
         additions:
           type: object
           additionalProperties:
-            type: object
-      description: The object defining the transaction to be initiated.
-    Schedule:
-      required:
-      - every
-      - 'on'
-      - startDate
-      - transferFrequency
+            type: string
+          description: Additional properties
+    Bank:
       type: object
       properties:
-        nonWorkingDayExecutionStrategy:
+        bankBranchCode:
+          maxLength: 11
           type: string
-          description: Strategy for executing payments on non-working days
-          enum:
-          - BEFORE
-          - AFTER
-          - NONE
-        transferFrequency:
-          type: string
-          description: Denotes how frequently the transfer should be made
-          enum:
-          - ONCE
-          - DAILY
-          - WEEKLY
-          - BIWEEKLY
-          - MONTHLY
-          - QUARTERLY
-          - YEARLY
-        'on':
-          type: integer
-          description: Denotes day on which transfer should be executed. For WEEKLY transferFrequency it will be 1..7 indicating weekday. For BIWEEKLY it will be 1..14 indicating the day of the two week period. For MONTHLY it will be 1..31 indicating day of month. For YEARLY it will be 1..12 indicating month of the year.
-          format: int32
-        startDate:
-          type: string
-          description: When to start executing the schedule. First transfer will be executed on first calculated date by schedule after this date.
-          format: date
-        endDate:
-          type: string
-          description: When to stop transfers. Transfers will not be executed after this date. Only one of endDate and repeat is possible. If neither repeat nor endDate is provided transfer will be executed until canceled
-          format: date
-        repeat:
-          type: integer
-          description: Number of transfer to be executed. Only one of endDate and repeat is possible. If neither repeat nor endDate is provided transfer will be executed until canceled
-          format: int32
-        every:
-          type: integer
-          description: Indicates skip interval of transfer. 1 would mean execute every time, 2 - every other time
-          format: int32
-          enum:
-          - 1
-          - 2
-        nextExecutionDate:
-          type: string
-          description: Date when the next payment will be executed, taking in consideration bank holidays and cut-off times. It will be only retrieved when getting payments, it will be dismissed when creating or updating.
-          format: date
-      description: Schedule for recurring transfer. Mandatory if paymentMode is RECURRING
-    IdentifiedTransaction:
-      required:
-      - counterparty
-      - counterpartyAccount
-      - instructedAmount
-      type: object
-      properties:
-        counterparty:
-          $ref: '#/components/schemas/InvolvedParty'
-        counterpartyAccount:
-          $ref: '#/components/schemas/CounterpartyAccount'
-        counterpartyBank:
-          $ref: '#/components/schemas/Bank'
-        instructedAmount:
-          $ref: '#/components/schemas/Currency'
-        correspondentBank:
-          $ref: '#/components/schemas/Bank'
-        intermediaryBank:
-          $ref: '#/components/schemas/Bank'
-        messageToBank:
+          description: Some code to identify a bank office, p.e. ABA routing transit number (9) or Swift BIC code (11)
+        name:
           maxLength: 140
           type: string
-          description: The message to the bank used for US domestic wire payments
-        targetCurrency:
-          pattern: ^[A-Z]{3}$
+          description: The name of a bank
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        bic:
+          pattern: ^([A-Z0-9]){4}([A-Z]){2}([A-Z0-9]){2}([A-Z0-9]{3})?$
           type: string
-          description: The alpha-3 code (complying with ISO 4217) of the currency
-        remittanceInformation:
-          $ref: '#/components/schemas/RemittanceInformation'
-        endToEndIdentification:
-          maxLength: 35
+          description: Business identifier code as specified by ISO 9362:2014
+      description: This object is used to identify the counterparty or correspondent bank.
+    bad-request-error:
+      title: BadRequestError
+      required:
+      - message
+      type: object
+      properties:
+        message:
           type: string
-        mandateIdentifier:
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/error-item'
+    RemittanceInformation:
+      required:
+      - content
+      - type
+      type: object
+      properties:
+        type:
+          type: string
+          description: When type is structured it consists of some XML tags used when the transaction was uploaded.
+          enum:
+          - STRUCTURED
+          - UNSTRUCTURED
+        content:
+          maxLength: 140
+          type: string
+          description: The content of the remittance information.
+      description: This is the object representation of the remittance info and can contain different types of remittance info. It is only used in responses, not for input requests!
+    Currency:
+      $ref: '#/components/schemas/currency'
+    InvolvedParty:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          maxLength: 140
+          type: string
+        role:
+          type: string
+          description: These are the possible values the role of an involved party can  have.
+          enum:
+          - CREDITOR
+          - DEBTOR
+        postalAddress:
+          $ref: '#/components/schemas/PostalAddress'
+        recipientId:
           maxLength: 15
           type: string
-          description: The mandate identifier, of the counter party, giving permission for the debit order.
-        chargeBearer:
-          type: string
-          description: 'Indicated who pays the fees for an international transfer. Possible values: OUR(originator), BEN(beneficiary or SHA(shared).'
-          enum:
-          - OUR
-          - BEN
-          - SHA
-        transferFee:
-          $ref: '#/components/schemas/Currency'
-        exchangeRateInformation:
-          $ref: '#/components/schemas/ExchangeRateInformation'
-      description: The object defining the identified transaction, which means the counterparty will have a arrangementId where applicable.
+          description: Used for ACH Credit to indicate the id of the recipient
+      description: This object is a common denominator for the debtor or creditor party.
+  examples:
+    intra-legal-entity:
+      summary: intra-legal-entity
+      value:
+        originatorAccount:
+          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
+          externalArrangementId: '729190421493794513132'
+          identification:
+            identification: NL53RABO0309349755
+            schemeName: IBAN
+        originator:
+          name: Credit Account
+          postalAddress:
+            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+        instructionPriority: NORM
+        requestedExecutionDate: 2017-07-16
+        paymentType: SEPA_CT_ILE
+        isIntraLegalEntityPaymentOrder: true
+        canApprove: false
+        finalApprover: false
+        transferTransactionInformation:
+          instructedAmount:
+            amount: '5000.55'
+            currencyCode: EUR
+          counterpartyAccount:
+            identification:
+              identification: FR708933019952AUNHQNQ0KZ
+              schemeName: IBAN
+            name: ABN Amro
+          counterparty:
+            name: Backbase
+            postalAddress:
+              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+              country: NL
+          remittanceInformation:
+            type: UNSTRUCTURED
+            content: Return a debt
+    default:
+      summary: default
+      value:
+        originatorAccount:
+          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
+          externalArrangementId: '729190421493794513132'
+          identification:
+            identification: NL53RABO0309349755
+            schemeName: IBAN
+        originator:
+          name: Credit Account
+          postalAddress:
+            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+        instructionPriority: NORM
+        requestedExecutionDate: 2017-07-16
+        paymentType: SEPA_CREDIT_TRANSFER
+        isIntraLegalEntityPaymentOrder: false
+        canApprove: false
+        finalApprover: false
+        transferTransactionInformation:
+          instructedAmount:
+            amount: '5000.55'
+            currencyCode: EUR
+          counterpartyAccount:
+            identification:
+              identification: FR708933019952AUNHQNQ0KZ
+              schemeName: IBAN
+            name: ABN Amro
+          counterparty:
+            name: Backbase
+            postalAddress:
+              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+              country: NL
+          remittanceInformation:
+            type: UNSTRUCTURED
+            content: Return a debt
+    simple:
+      summary: simple
+      value:
+        originatorAccount:
+          identification:
+            identification: 729190df-a421-4937-94fd-5e1a3da132cc
+            schemeName: ID
+        requestedExecutionDate: 2017-08-11
+        paymentType: SEPA_CREDIT_TRANSFER
+        transferTransactionInformation:
+          instructedAmount:
+            amount: '100.00'
+            currencyCode: EUR
+          counterparty:
+            name: J. Sparrow
+          counterpartyAccount:
+            identification:
+              identification: NL21ABNA0136371124
+              schemeName: IBAN
+            selectedContact:
+              contactId: 14b0b245-c7a9-427e-8e77-26c2f98dfa3d
+              accountId: 61425aed-5d5c-4292-8f60-e2f3efc9b66a
+    lib-internal-server-error:
+      summary: lib-internal-server-error
+      value:
+        message: Description of error
+    final-approver:
+      summary: final-approver
+      value:
+        originatorAccount:
+          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
+          externalArrangementId: '729190421493794513132'
+          identification:
+            identification: NL53RABO0309349755
+            schemeName: IBAN
+        originator:
+          name: Credit Account
+          postalAddress:
+            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+        instructionPriority: NORM
+        requestedExecutionDate: 2017-07-16
+        paymentType: SEPA_CREDIT_TRANSFER
+        isIntraLegalEntityPaymentOrder: false
+        canApprove: true
+        finalApprover: true
+        transferTransactionInformation:
+          instructedAmount:
+            amount: '5000.55'
+            currencyCode: EUR
+          counterpartyAccount:
+            identification:
+              identification: FR708933019952AUNHQNQ0KZ
+              schemeName: IBAN
+            name: ABN Amro
+          counterparty:
+            name: Backbase
+            postalAddress:
+              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+              country: NL
+          remittanceInformation:
+            type: UNSTRUCTURED
+            content: Return a debt
+    complex:
+      summary: complex
+      value:
+        originatorAccount:
+          identification:
+            identification: 729190df-a421-4937-94fd-5e1a3da132cc
+            schemeName: ID
+        batchBooking: true
+        instructionPriority: NORM
+        requestedExecutionDate: 2018-01-01
+        paymentMode: RECURRING
+        paymentType: SEPA_CREDIT_TRANSFER
+        schedule:
+          nonWorkingDayExecutionStrategy: AFTER
+          transferFrequency: MONTHLY
+          'on': 1
+          startDate: 2018-01-01
+          repeat: 2
+          every: 1
+        transferTransactionInformation:
+          instructedAmount:
+            amount: '100.00'
+            currencyCode: EUR
+          counterparty:
+            name: Dagobert Duck
+            postalAddress:
+              addressLine1: Some other street
+              addressLine2: '99'
+              postCode: 1100 ZZ
+              town: Amsterdam
+              country: NL
+          counterpartyAccount:
+            identification:
+              identification: fe9d66ae-b927-4ac7-8799-c5a38a596ff2
+              schemeName: ID
+          remittanceInformation: Salary
+          endToEndIdentification: 5e1a3da132cc
+    lib-bad-request-validation-error:
+      summary: lib-bad-request-validation-error
+      value:
+        message: Bad Request
+        errors:
+        - message: Value Exceeded. Must be between {min} and {max}.
+          key: common.api.shoesize
+          context:
+            max: '50'
+            min: '1'
+    can-approve:
+      summary: can-approve
+      value:
+        originatorAccount:
+          arrangementId: 729190df-a421-4937-94fd-5e1a3da132cc
+          externalArrangementId: '729190421493794513132'
+          identification:
+            identification: NL53RABO0309349755
+            schemeName: IBAN
+        originator:
+          name: Credit Account
+          postalAddress:
+            addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+        instructionPriority: NORM
+        requestedExecutionDate: 2017-07-16
+        paymentType: SEPA_CREDIT_TRANSFER
+        isIntraLegalEntityPaymentOrder: false
+        canApprove: true
+        finalApprover: false
+        transferTransactionInformation:
+          instructedAmount:
+            amount: '5000.55'
+            currencyCode: EUR
+          counterpartyAccount:
+            identification:
+              identification: FR708933019952AUNHQNQ0KZ
+              schemeName: IBAN
+            name: ABN Amro
+          counterparty:
+            name: Backbase
+            postalAddress:
+              addressLine1: Jacob Bontiusplaats 9, 1018LL, Amsterdam
+              country: NL
+          remittanceInformation:
+            type: UNSTRUCTURED
+            content: Return a debt

@@ -241,6 +241,77 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    UnauthorizedAltError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    TestHeadersResponseBody:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              url:
+                type: string
+              headers:
+                type: object
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    TestValuesGetResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+        number:
+          type: string
+      example:
+        message: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        number: '102.4'
+    RequiredbooleanqueryparamGetResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
     DateQueryParamGetResponseBody:
       type: object
       properties:
@@ -278,7 +349,7 @@ components:
         formatUtcMillisec:
           type: string
           description: The dateTime parameter formatted as 'date', long
-    UnauthorizedAltError:
+    NotFoundError:
       type: object
       properties:
         message:
@@ -302,77 +373,6 @@ components:
           type: object
           description: Context can be anything used to construct localised messages.
       description: A validation error
-    ForbiddenError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    TestHeadersResponseBody:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              url:
-                type: string
-              headers:
-                type: object
-    UnsupportedMediaTypeError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    InternalServerError:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    RequiredbooleanqueryparamGetResponseBody:
-      type: object
-      properties:
-        message:
-          type: string
-    TestValuesGetResponseBody:
-      type: object
-      properties:
-        message:
-          type: string
-        number:
-          type: string
-      example:
-        message: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
-        number: '102.4'
-    NotFoundError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
     BadRequestError:
       required:
       - message
