@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/backbase/backbase-openapi-tools/HEAD/boat-trail-resources/src/main/resources/openapi/presentation-client-api/openapi.yaml",
+ "requested_url": "https://raw.githubusercontent.com/backbase/backbase-openapi-tools/HEAD/boat-trail-resources/src/main/resources/openapi/presentation-client-api/openapi.yaml",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 50035,
+ "sha256": "16f708d3db2ec2eb4b8c10079b77617fe2ac405bb48857a02b3ecb77f94bc120",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
