@@ -78,6 +78,8 @@ common:
   url: security/backbase-domain-security.yml
 - type: Website
   url: https://www.backbase.com
+- type: SpectralRules
+  url: https://github.com/Backbase/backbase-openapi-tools/blob/6290a82f514c77c90e697555040df39820e15024/boat-quay/openapi-rules.yml
 apis:
 - aid: backbase:backbase-approve-api
   name: BackBase Approve API

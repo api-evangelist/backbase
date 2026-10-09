@@ -1,19 +1,66 @@
-generated: '2026-09-27'
+generated: '2026-10-03'
 method: generated
-source: openapi/payment-order-client-api-v2.0.0.yaml
+source: openapi/backbase-approve-api-openapi.yml, openapi/backbase-bbt-api-openapi.yml, openapi/backbase-patch-api-openapi.yml,
+  openapi/backbase-payment-orders-api-openapi.yml, openapi/backbase-test-api-openapi.yml, openapi/backbase-utility-api-openapi.yml,
+  openapi/backbase-validate-api-openapi.yml, openapi/backbase-wallet-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
-  operations: 12
+  operations: 26
   by_action_class:
-    connected: 5
-    acting: 7
+    acting: 12
+    connected: 14
   by_consequence:
-    read: 5
-    physical: 7
+    physical: 11
+    read: 14
+    write: 1
   human_in_the_loop_required: 0
 operations:
+- path: /client-api/v2/payment-orders/{paymentOrderId}/approvals
+  method: put
+  operationId: putApprovalsByPaymentOrderId
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /bbt/build-info
+  method: get
+  operationId: getBuildinfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /patch
+  method: patch
+  operationId: patchPatch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /client-api/v2/payment-orders
   method: get
   operationId: getPaymentOrders
@@ -190,3 +237,137 @@ operations:
     token:
       max-ttl: 3600
     audit: none
+- path: /test/required-boolean-query-param
+  method: get
+  operationId: getRequiredbooleanqueryparam
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /test/values
+  method: get
+  operationId: getValues
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /test/headers
+  method: get
+  operationId: getHeaders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /test/date-query-params
+  method: get
+  operationId: getDatequeryparams
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /client-api/v2/payment-orders/currencies
+  method: get
+  operationId: getCurrencies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /client-api/v2/payment-orders/rate
+  method: get
+  operationId: getRate
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /client-api/v2/payment-orders/validate
+  method: post
+  operationId: postValidate
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /wallet/paymentcards
+  method: get
+  operationId: getPaymentcards
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wallet/paymentcards
+  method: post
+  operationId: postPaymentcards
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /wallet/paymentcards/{cardId}
+  method: get
+  operationId: getCardIdByCardId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wallet/paymentcards/{cardId}
+  method: delete
+  operationId: deleteCardIdByCardId
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
