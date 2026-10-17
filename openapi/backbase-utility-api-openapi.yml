@@ -104,43 +104,18 @@ paths:
       summary: Get rate
       x-summary-source: derived
 components:
-  examples:
-    lib-internal-server-error:
-      summary: lib-internal-server-error
-      value:
-        message: Description of error
-    payment-orders-rate-get-response:
-      summary: payment-orders-rate-get-response
-      value:
-        rate: 1.07
-    payment-orders-currencies-get-response:
-      summary: payment-orders-currencies-get-response
-      value:
-      - code: EUR
-      - code: USD
-      - code: GBP
-      - code: ISK
-      - code: KWD
-    lib-bad-request-validation-error:
-      summary: lib-bad-request-validation-error
-      value:
-        message: Bad Request
-        errors:
-        - message: Value Exceeded. Must be between {min} and {max}.
-          key: common.api.shoesize
-          context:
-            max: '50'
-            min: '1'
   schemas:
-    RateGet:
-      title: RateGet
+    currencies-get-response-body:
+      title: Currency
       required:
-      - rate
+      - code
       type: object
       properties:
-        rate:
-          type: number
-          description: Rate for given currencies
+        code:
+          pattern: ^[A-Z]{3}$
+          type: string
+          description: The alpha-3 code (complying with ISO 4217) of the currency
+      description: Currency
     bad-request-error:
       title: BadRequestError
       required:
@@ -155,17 +130,6 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/error-item'
-    currencies-get-response-body:
-      title: Currency
-      required:
-      - code
-      type: object
-      properties:
-        code:
-          pattern: ^[A-Z]{3}$
-          type: string
-          description: The alpha-3 code (complying with ISO 4217) of the currency
-      description: Currency
     CurrenciesGet:
       title: CurrenciesGet
       type: array
@@ -187,6 +151,15 @@ components:
           additionalProperties:
             type: string
           description: Context can be anything used to construct localised messages.
+    RateGet:
+      title: RateGet
+      required:
+      - rate
+      type: object
+      properties:
+        rate:
+          type: number
+          description: Rate for given currencies
     internal-server-error:
       title: InternalServerError
       type: object
@@ -197,3 +170,30 @@ components:
       description: Represents HTTP 500 Internal Server Error
     CurrenciesGetResponseBody:
       $ref: '#/components/schemas/currencies-get-response-body'
+  examples:
+    lib-bad-request-validation-error:
+      summary: lib-bad-request-validation-error
+      value:
+        message: Bad Request
+        errors:
+        - message: Value Exceeded. Must be between {min} and {max}.
+          key: common.api.shoesize
+          context:
+            max: '50'
+            min: '1'
+    payment-orders-currencies-get-response:
+      summary: payment-orders-currencies-get-response
+      value:
+      - code: EUR
+      - code: USD
+      - code: GBP
+      - code: ISK
+      - code: KWD
+    lib-internal-server-error:
+      summary: lib-internal-server-error
+      value:
+        message: Description of error
+    payment-orders-rate-get-response:
+      summary: payment-orders-rate-get-response
+      value:
+        rate: 1.07

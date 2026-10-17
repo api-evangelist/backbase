@@ -241,77 +241,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UnauthorizedAltError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    ForbiddenError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    UnsupportedMediaTypeError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
-    TestHeadersResponseBody:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              url:
-                type: string
-              headers:
-                type: object
-    InternalServerError:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    TestValuesGetResponseBody:
-      type: object
-      properties:
-        message:
-          type: string
-        number:
-          type: string
-      example:
-        message: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
-        number: '102.4'
-    RequiredbooleanqueryparamGetResponseBody:
-      type: object
-      properties:
-        message:
-          type: string
     DateQueryParamGetResponseBody:
       type: object
       properties:
@@ -349,7 +278,7 @@ components:
         formatUtcMillisec:
           type: string
           description: The dateTime parameter formatted as 'date', long
-    NotFoundError:
+    UnauthorizedAltError:
       type: object
       properties:
         message:
@@ -360,19 +289,6 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/ErrorItem'
-    ErrorItem:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Default Message. Any further information.
-        key:
-          type: string
-          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
-        context:
-          type: object
-          description: Context can be anything used to construct localised messages.
-      description: A validation error
     BadRequestError:
       required:
       - message
@@ -386,3 +302,87 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/ErrorItem'
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    RequiredbooleanqueryparamGetResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+    TestHeadersResponseBody:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              url:
+                type: string
+              headers:
+                type: object
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    TestValuesGetResponseBody:
+      type: object
+      properties:
+        message:
+          type: string
+        number:
+          type: string
+      example:
+        message: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        number: '102.4'
+    NotFoundError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+    ErrorItem:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Default Message. Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          description: Context can be anything used to construct localised messages.
+      description: A validation error

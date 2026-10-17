@@ -428,27 +428,13 @@ paths:
       x-BbAccessControl-privilege: DELETE_PAYMENT_CARD
 components:
   schemas:
-    NotAcceptableError:
+    PaymentCardsPostResponseBody:
       type: object
       properties:
-        message:
+        id:
           type: string
-        supportedMediaTypes:
-          type: array
-          description: List of supported media types for this endpoint
-          items:
-            type: string
-    UnauthorizedAltError:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
+      example:
+        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
     ForbiddenError:
       type: object
       properties:
@@ -460,7 +446,7 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/ErrorItem'
-    UnsupportedMediaTypeError:
+    UnauthorizedAltError:
       type: object
       properties:
         message:
@@ -471,26 +457,19 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/ErrorItem'
-    InternalServerError:
+    BadRequestError:
       required:
       - message
       type: object
       properties:
         message:
           type: string
-          description: Further Information
-      description: Represents HTTP 500 Internal Server Error
-    PaymentCards:
-      type: array
-      items:
-        $ref: '#/components/schemas/PaymentCard'
-    PaymentCardsPostResponseBody:
-      type: object
-      properties:
-        id:
-          type: string
-      example:
-        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
     PaymentCard:
       required:
       - cvc
@@ -535,6 +514,27 @@ components:
           - CREDIT
           - DEBIT
           - PREPAID
+    NotAcceptableError:
+      type: object
+      properties:
+        message:
+          type: string
+        supportedMediaTypes:
+          type: array
+          description: List of supported media types for this endpoint
+          items:
+            type: string
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
     NotFoundError:
       type: object
       properties:
@@ -546,19 +546,19 @@ components:
           description: Detailed error information
           items:
             $ref: '#/components/schemas/ErrorItem'
-    ErrorItem:
+    PaymentCards:
+      type: array
+      items:
+        $ref: '#/components/schemas/PaymentCard'
+    InternalServerError:
+      required:
+      - message
       type: object
       properties:
         message:
           type: string
-          description: Default Message. Any further information.
-        key:
-          type: string
-          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
-        context:
-          type: object
-          description: Context can be anything used to construct localised messages.
-      description: A validation error
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
     Currency:
       title: Monetary Amount
       required:
@@ -574,16 +574,16 @@ components:
           type: string
           description: The alpha-3 code (complying with ISO 4217) of the currency that qualifies the amount
       description: Schema defining monetary amount in given currency.
-    BadRequestError:
-      required:
-      - message
+    ErrorItem:
       type: object
       properties:
         message:
           type: string
-          description: Any further information
-        errors:
-          type: array
-          description: Detailed error information
-          items:
-            $ref: '#/components/schemas/ErrorItem'
+          description: Default Message. Any further information.
+        key:
+          type: string
+          description: '{capability-name}.api.{api-key-name}. For generated validation errors this is the path in the document the error resolves to. e.g. object name + ''.'' + field'
+        context:
+          type: object
+          description: Context can be anything used to construct localised messages.
+      description: A validation error
