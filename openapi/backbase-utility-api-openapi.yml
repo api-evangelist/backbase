@@ -197,3 +197,9 @@ components:
       summary: payment-orders-rate-get-response
       value:
         rate: 1.07
+x-provenance:
+  method: harvested
+  publisher: BackBase
+  source: https://raw.githubusercontent.com/backbase/backbase-openapi-tools/HEAD/boat-maven-plugin/src/main/resources/payment-order-client-api-v2.0.0.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

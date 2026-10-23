@@ -386,3 +386,9 @@ components:
           type: object
           description: Context can be anything used to construct localised messages.
       description: A validation error
+x-provenance:
+  method: harvested
+  publisher: BackBase
+  source: https://raw.githubusercontent.com/backbase/backbase-openapi-tools/HEAD/boat-trail-resources/src/main/resources/openapi/presentation-client-api/openapi.yaml
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
