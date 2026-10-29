@@ -64,5 +64,145 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-BackBase is a company surfaced via the API Evangelist harvest backlog (source: secondary-market) and added to the network as a stub for full-pipeline profiling.
-- https://forgeglobal.com/backbase_stock/
+BackBase provides an AI-native Banking Operating System that enables banks to deliver digital experiences, integrate open banking, and accelerate product innovation. The platform offers modular components for customer engagement, core banking, risk management, and marketplace extensions, helping financial institutions modernize their services and improve operational efficiency.
+
+**Areas:** Banking · Fintech · Digital Banking · API Platform · AI-Native
+
+## BackBase on APIs.io
+
+Everything profiled for BackBase is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/backbase/](https://apis.io/providers/backbase/)** — or go straight to one of the APIs or properties below.
+
+### APIs (8)
+
+- [BackBase Approve API](https://apis.io/apis/backbase/backbase-approve-api/) — Payment approval API.
+- [BackBase Bbt API](https://apis.io/apis/backbase/backbase-bbt-api/) — The bbt API from BackBase — 1 operation(s) for bbt.
+- [BackBase Patch API](https://apis.io/apis/backbase/backbase-patch-api/) — The patch API from BackBase — 1 operation(s) for patch.
+- [BackBase Payment Orders API](https://apis.io/apis/backbase/backbase-payment-orders-api/) — Core payments API.
+- [BackBase Test API](https://apis.io/apis/backbase/backbase-test-api/) — The test API from BackBase — 4 operation(s) for test.
+- [BackBase Utility API](https://apis.io/apis/backbase/backbase-utility-api/) — Utility endpoints.
+- [BackBase Validate API](https://apis.io/apis/backbase/backbase-validate-api/) — Validation of a payment.
+- [BackBase Wallet API](https://apis.io/apis/backbase/backbase-wallet-api/) — The wallet API from BackBase — 2 operation(s) for wallet.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [backbase-mcp.yml](https://apis.io/servers/backbase/backbase-mcp-yml/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Backbase Agentic Access](https://apis.io/agentic-access/backbase/backbase-agentic-access/)
+
+#### JSON Schema (12)
+
+The data models the API reads and writes.
+
+- [BbtBuild-infoGetGetResponseBody](https://apis.io/schemas/backbase/backbase-bbt-build-info-get-get-response-body/)
+- [BulkPaymentOrdersApprovalPutResponse](https://apis.io/schemas/backbase/backbase-bulk-payment-orders-approval-put-response/)
+- [DateQueryParamGetResponseBody](https://apis.io/schemas/backbase/backbase-date-query-param-get-response-body/)
+- [PaymentCard](https://apis.io/schemas/backbase/backbase-payment-card/)
+- [PaymentCardsPostResponseBody](https://apis.io/schemas/backbase/backbase-payment-cards-post-response-body/)
+- [PaymentOrderGet](https://apis.io/schemas/backbase/backbase-payment-order-get-response/)
+- [InitiatePaymentOrder](https://apis.io/schemas/backbase/backbase-payment-orders-post/)
+- [PaymentOrdersPostResponse](https://apis.io/schemas/backbase/backbase-payment-orders-post-response/)
+- [InitiatePaymentOrder](https://apis.io/schemas/backbase/backbase-payment-orders-validate-post/)
+- [PaymentOrdersValidatePostResponse](https://apis.io/schemas/backbase/backbase-payment-orders-validate-post-response/)
+- [TestHeadersResponseBody](https://apis.io/schemas/backbase/backbase-test-headers-response-body/)
+- [TestValuesGetResponseBody](https://apis.io/schemas/backbase/backbase-test-values-get-response-body/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Backbase Context](https://apis.io/jsonld/backbase/backbase-context/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Backbase Payment Order Client Api Overlay](https://apis.io/overlays/backbase/backbase-payment-order-client-api-overlay/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [BackBase — backbase openapi tools rules](https://apis.io/rules/backbase/backbase-backbase-openapi-tools-spectral-rules/)
+- [BackBase API Rules](https://apis.io/rules/backbase/backbase-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Backbase Domain Security](https://apis.io/security/backbase/backbase-domain-security/)
+- [Backbase Vulnerability Disclosure](https://apis.io/security/backbase/backbase-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.backbase.com)
+- [Documentation](https://www.backbase.com/insight/guides)
+- [Getting started](https://www.backbase.com/blog/agentic-onboarding-commercial-banking)
+- [Blog](https://www.backbase.com/blog)
+- [Security](https://www.backbase.com/about/security)
+- [Privacy policy](https://www.backbase.com/legal/privacy-policy)
+- [GitHub](https://github.com/Backbase)
+
+## API Evangelist rating
+
+**Kin Score 34.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.4 |
+| Contract quality | 57.6 |
+| Contract governance | 22.0 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 32.7 |
+| Access clarity | 10.5 |
+
+**Agent readiness 28.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.5** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/backbase/](https://apis.io/providers/backbase/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BackBase: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/backbase/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
